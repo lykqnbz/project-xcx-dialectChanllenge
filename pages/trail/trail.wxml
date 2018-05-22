@@ -1,0 +1,88 @@
+<view class='trailContainer'>
+  <image class='bg-container' src='/asset/img/BJ2.png' />
+
+  <block wx:if="{{bank}}">
+    <image class='trailShen' bindtap="gotoBank" id='trail_bank' src='/asset/img/quchuti@2x.png' />
+    <view class='trailName'>
+      <image src="{{bank.avatarUrl}}" />贡献者：{{bank.nickname}}</view>
+
+    <!-- 播放 -->
+    <view class='play-wrapper'>
+      <image class='play-people' src='{{gifImg}}'></image>
+      <!-- 音频控制 -->
+      <image class='play-bofang' src='/asset/img/bofang.png' bindtap='playVoice' wx:if='{{isPlay}}'></image>
+    </view>
+    <view class='bankConList'>
+      <view class='bankRightAns'>
+        <label>正确答案</label>
+        <view>{{bank.answer}}</view>
+      </view>
+      <view class='bankErrorAns'>
+        <label>错误答案</label>
+        <view wx:for="{{bank.options}}" wx:for-index="index" wx:key="index">
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class='bankBottom'>
+      <image bindtap='showReport' src='/asset/img/jubaoicon@2x.png' id='trail_report' />
+      <image data-answer="true" bindtap="trailBank" src='/asset/img/zhengqueicon@2x.png' id='trail_true' />
+      <image data-answer="false" bindtap="trailBank" src='/asset/img/cuowuicon@2x.png' id='trail_false' />
+      <image bindtap='skipCurrent' src='/asset/img/tiaoguoicon@2x.png' id='trail_skip' />
+    </view>
+  </block>
+
+</view>
+<!--举报  -->
+<view class='trailHifi' wx:if="{{showReport}}">
+  <view class='trailCon'>
+    <image class='trailHifiBg' src='/asset/img/jubaoyuanyin@2x.jpg' />
+    <view class='trailSect'>
+      <view wx:for="{{reportItems}}" class="{{reportReason==item?'active':''}}" data-reason="{{item}}" bindtap="selectReason">{{item}}</view>
+    </view>
+    <view class='trailBtn'>
+      <image class='trailCances' bindtap="reportCancel" src='/asset/img/jubao_quxiao@2x.png' />
+      <image class='trailSure' bindtap='trailReport' src='/asset/img/jubao_queren@2x.png' />
+    </view>
+  </view>
+</view>
+
+<!--审题须知  -->
+<view class='bindHifi' wx:if="{{showNotice}}">
+  <view class='bindHifiCon'>
+    <image class='bindHifiConBg' src='/asset/img/shentixuzhi@2x.jpg' />
+    <view class='bindHifiConList zindex'>
+      <label>1.请严肃正直的审核每一题哟~每一题，即可 获得1点贡献值</label>
+      <label>2.玩家只能审核到当前选定语类的相关题目</label>
+      <label>3.题目中若出现政治、暴利、色情、广告等 一系列违法乱纪的内容，请及时举报，举报核实后举报人将获得10点贡献值</label>
+    </view>
+    <image class='bindHifiConGet zindex' src='/asset/img/WMBL@2x.png' bindtap='closeNotice' />
+  </view>
+</view>
+
+<!--没有题库弹窗  -->
+<view class='trailNoMore' wx:if="{{showNone}}">
+  <view class='trailNoMoreCon'>
+    <image class='trailNoMoreBg' src='/asset/img/tikuwuti@2x.png' />
+    <image class='trailNoMoreBtn' src='/asset/img/rrrr.png' bindtap="gotoBank" />
+  </view>
+</view>
+
+<!--选定方言  -->
+<view class='bankTo' wx:if="{{showBind}}">
+  <image class='binkToBg' src='/asset/img/weibangdintanch@2x.jpg' />
+  <image class='binkToYes' src='/asset/img/qianwangbangding@2x.png' bindtap='gotoBind' />
+  <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+  <label>注：选定后可获得为当前方言出题的权限</label>
+</view>
+
+<!--获取证书 -->
+<view class='bindHifi' wx:if="{{showZhengshu}}">
+  <view class='bankTo'>
+    <image class='binkToBg' src='/asset/img/weibangdinZStanch@2x.jpg' />
+    <image class='binkToYes' src='/asset/img/d2de.png' bindtap='goGetZh' />
+    <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+    <label>注：选定且获得证书后才可获得资格</label>
+  </view>
+</view>

@@ -1,0 +1,95 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class="psnC_container">
+  <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{wrapHeight-10}}px' scroll-with-animation scroll-into-view="{{curTar3Top}}" >
+    <!--聊天主体  -->
+    <view  wx:if="{{talkList.length>0&&!notEarlyData}}"  class='upGitMore' bindtap='getEarlyTalk'>
+      <image src='/asset/img/GD.png' />
+    </view>
+    <view class='noMoreMsg' wx:if="{{talkList.length<=0||notEarlyData}}">暂无更多消息</view>
+    <view class='newChatItem' wx:for="{{talkList}}" wx:key="{{item.id}}" wx:for-index="index">
+      <view class='newChatTime' wx:if="{{item.showTime}}">{{filters.parseTime(item.createTime, '{m}-{d} {h}:{i}')}}</view>
+
+
+
+      <!--自己  -->
+      <view class='newChatCenSelf' wx:if="{{item.senderId == selfAccount.id}}">
+        <view class='newChatCenRight'>
+          <view class='newChatCRB'>
+            <view class='newChatCRBRihgtJBSelf' data-index="{{index}}" data-id="{{item.id}}" data-type="letter" bindtap='deleteRecord'>
+              撤回
+            </view>
+            <view class='newChatCRBRihgtSelf'>
+
+              <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+            </view>
+            <view class='newChatCRBLeftSelf'>
+              <view data-id="{{item.id}}" data-index="{{index}}" bindtap="bindPlay">
+                <image wx:if="{{playMap.currentIndex== index}}" src='/asset/img/selfGif.gif' />
+                <image wx:if="{{playMap.currentIndex!= index}}" src='/asset/img/bdf.png' />
+              </view>
+              <image src='/asset/img/rightD.png' />
+
+            </view>
+          </view>
+        </view>
+        <view class='newChatCenLeftSelf'>
+          <image src='{{selfAccount.avatarUrl}}' />
+        </view>
+      </view>
+
+      <!--其他人  -->
+      <view class='newChatCen' wx:else>
+        <navigator class='newChatCenLeft' url="/pages/person_other/person_other?accountId={{otherAccount.id}}" open-type='redirect'>
+          <image src='{{otherAccount.avatarUrl}}' />
+          <label></label>
+
+        </navigator>
+        <view class='newChatCenRight'>
+          <view class='newChatCRB'>
+            <view class='newChatCRBLeft'>
+              <image src='/asset/img/leftD.png' />
+              <view data-id="{{item.id}}" data-index="{{index}}" bindtap="bindPlay">
+                <image wx:if="{{playMap.currentIndex== index}}" src='/asset/img/OtherGif.gif' />
+                <image wx:if="{{playMap.currentIndex!= index}}" src='/asset/img/other.png' />
+              </view>
+
+            </view>
+            <view class='newChatCRBRihgt'>
+              <!--红点  -->
+              <view wx:if="{{item.read ==false}}"></view>
+              <!--时间  -->
+              <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+            </view>
+            <view class='newChatCRBRihgtJB' wx:if="{{playMap.currentIndex== index}}" data-id="{{item.id}}" data-type="letter" data-name="{{item.nickname}}" bindtap='reportShow'>
+              举报
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 垫底白板 -->
+    <view class='inBottom' id='inBottom'></view>
+  </scroll-view>
+</view>
+
+<!--播放  -->
+<view class='navForThree'>
+  <image wx:if="{{!isSpeaking}}" src='/asset/img/changanfayan.png' />
+  <image wx:else src='/asset/img/luzhiyuyin.gif' />
+  <form bindsubmit="formSubmit" report-submit="true">
+    <button bindtouchstart="touchdown" bindtouchend="touchup" formType="submit" ></button>
+  </form>
+</view>
+
+<!--通用举报  -->
+<view class='msgHifi' wx:if="{{showReport}}">
+  <view class='sendMsgCon'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeReport' />
+    <view class='smg_title'>举报</view>
+    <view class='smg_anniu'>
+      <view wx:for="{{reasonList}}" wx:key="{{item}}" data-reason="{{item}}" bindtap='selectReason' class="{{reportMap.reason==item? 'beAn':''}}">{{item}}</view>
+    </view>
+    <textarea class='smg_con' placeholder='其他原因' bindinput="inputReason" placeholder-class='smg_place' maxlength='100'></textarea>
+    <view class='smg_bth {{!reportMap.reason && !reportMap.otherReason?"":"smg_bthM"}}' bindtap='postReport'>确认举报</view>
+  </view>
+</view>

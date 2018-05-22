@@ -1,0 +1,429 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<import src="../template/filter/filter.wxml"/> 
+<view class='squareContainer'>
+  <image class='squareBg' src='/asset/img/BJ2.png' />
+  <view class='squareCon'>
+    <view class='squareMyhead'>
+      <view bindtap="gotoHome" class='squareIndex'>
+        <image src='/asset/img/fanhuizhuye2@2x.png' />
+      </view>
+      <view class='squareItem'>
+        <view class="squareView {{currentTab==0 ? 'active' : ''}}" id='tab_square1' data-current='0' bindtap="swichNav">配音秀</view>
+        <view class="squareView {{currentTab==1 ? 'active' : ''}}" id='tab_square2' data-current='1' bindtap="swichNav">童谣歌曲</view>
+        <view class="squareView {{currentTab==2 ? 'active' : ''}}" id='tab_square4' data-current='2' bindtap="swichNav">附近的人</view>
+        <view class="squareView {{currentTab==3 ? 'active' : ''}}" id='tab_square3' data-current='3' bindtap="swichNav">老乡群</view>
+      </view>
+    </view>
+    <swiper duration="500" class='swiperCon' current="{{currentTab}}" bindchange="bindChange" style='height:{{SHeight}}rpx'>
+      <!-- 方言秀 -->
+      <swiper-item class="swiperItem_1">
+        <image class='lodding' wx:if="{{loadingMap[0]}}" src='/asset/img/laodd.gif' />
+        <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SInHeight-10}}rpx;' bindscrolltolower="showMoreForShow">
+          <!-- 最新版 循环体  -->
+          <navigator class='newFangItem' wx:for="{{showList}}" wx:key="{{item.id}}" url="/pages/square_topic/square_topic?showId={{item.id}}">
+            <view class='newFangTLeft'>
+              <image src='{{item.coverUrl}}' />
+            </view>
+            <view class='newFangTRight'>
+              <view class='nfIremTitle'>{{item.content}}</view>
+              <view class='nfIremBot'>
+                <view class='nfibLeft' catchtap="gotoPerson" data-account-id="{{item.accountId}}">
+                  <image src='{{item.avatarUrl}}' />
+                  <label>{{item.nickname}}</label>
+                </view>
+                <view class='nfibRight'>
+                  <label>
+                    <image src="/asset/img/dianjishu@2x.png" />{{item.viewNum}}</label>
+                  <view>
+                    <image src="/asset/img/huifushu@2x.png" />{{item.followNum}}</view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+
+          <!-- 垫底白板 -->
+          <view class='inBottom'></view>
+        </scroll-view>
+      </swiper-item>
+
+      <!-- 谚语歌谣 -->
+      <swiper-item class="swiperItem_2">
+
+        <image class='lodding' wx:if="{{loadingMap[1]}}" src='/asset/img/laodd.gif' />
+        <view class='swiperInCon'>
+          <view class='swiperInItemZone'>
+            <view class='swiperInItemQues2'>
+              <text>{{letterMap.ballad}}</text>
+              <view class='item2SanjiaoX' bindtap='moreLanguage' data-type="2">{{queryMap[1].dialect}}
+                <image class='{{currentInInTab2==1?"moveDw":""}}' src='/asset/img/ddwn.png' />
+              </view>
+            </view>
+          </view>
+          <!-- 帖子内容  -->
+          <view class='swiperInInCon' style='height:{{SInInHeight+70}}rpx;margin-top:10rpx;'>
+            <!--帖子内容列表  -->
+            <view class="swiperInInItemLeft   {{currentInInTab2==0 ? 'moveR1' : currentInInTab2==1 ?'moveL1':''}}">
+              <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SInInHeight+70}}rpx' bindscrolltolower="showMoreForSong">
+
+                <view class='scrItem2' wx:for="{{songList}}" wx:key="{{item.id}}" wx:for-index="index">
+                  <view class='si2Rank'>
+                    <image src='/asset/img/NO1ICON@2x.png' />
+                    <image src='/asset/img/NO2ICON@2x.png' />
+                    <image src='/asset/img/NO3ICON@2x.png' />
+                  </view>
+                  <view class='si2Top'>
+                    <label>{{item.title}}</label>
+                    <view>{{item.dialect}}</view>
+                  </view>
+                  <view class='si2NewCen'>
+                    <view class='si2Center'>
+                      {{item.description}}
+                    </view>
+                    <view class='si2Sec' data-id="{{item.id}}" data-voice-url="{{item.voiceUrl}}" data-index="{{index}}" bindtap="gotoPlay">
+                      <!--播放中为11s   否则11’  -->
+                      <!--播放中的图片 bofang.gif  -->
+                      <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+                      <image wx:if="{{playMap.currentPlayId== item.id}}" src='/asset/img/bofang.gif' />
+                      <image wx:if="{{playMap.currentPlayId!= item.id}}" src='/asset/img/bof@2x.png' />
+                    </view>
+                  </view>
+                  <view class='si2Bottom'>
+                    <navigator class='sibLeft' url="/pages/person_other/person_other?accountId={{item.accountId}}">
+                      <image src='{{item.avatarUrl}}' />
+                      <label>{{item.nickname}}</label>
+                      <view>
+                        <image wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+                        <image wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+                      </view>
+                    </navigator>
+                    <view class='sibRight'>
+                      <view class='sibR1'  wx:if="{{account.id!=item.accountId}}" data-type="song" data-name="{{item.nickname}}" data-id="{{item.id}}" bindtap='reportShow'>举报</view>
+                      <view class='sibR1' wx:if="{{account.id==item.accountId}}" data-index="{{index}}" data-id="{{item.id}}" data-type="song" bindtap='deleteRecord'>删除</view>
+
+                      <view class='sibR3' id='tab_songShare'>
+                        <label>分享</label>
+                        <button open-type='share'></button>
+                      </view>
+                      <!-- 已经点赞添加样式 blue  -->
+                      <!--图片地址 dianz2 -->
+
+                      <view class='sibR2' data-type="song" data-id="{{item.id}}" data-index="{{index}}" bindtap="admireHandle">
+                        <image wx:if="{{admireMap[item.id] == true}}" src='/asset/img/dianz2.png' />
+                        <image wx:else src='/asset/img/dianz1.png' />
+                        <label class='{{admireMap[item.id]?"blue":""}}'>{{item.admire}}</label>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+
+                <!-- 垫底白板 -->
+                <view class='inBottom'></view>
+              </scroll-view>
+            </view>
+            <view class="swiperInInItemRight  {{currentInInTab2==0 ? 'moveR2' : currentInInTab2==1 ?'moveL2':''}}">
+              <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SInInHeight+70}}rpx'>
+                <view class='srItem21' data-id="" data-type="2" data-dialect="全部" bindtap='selectDialect'>
+                  <label>全部</label>
+                  <image src='/asset/img/XIAYIBU@2x.png' />
+                </view>
+                <view class='srItem21' wx:for="{{summaryList}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-type="2" data-dialect="{{item.dialect}}" bindtap='selectDialect'>
+                  <label>{{item.dialect}}</label>
+                  <image src='/asset/img/XIAYIBU@2x.png' />
+                </view>
+
+                <!-- 垫底白板 -->
+                <view class='inBottom'></view>
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+
+      </swiper-item>
+
+      <!--附近的人  -->
+      <swiper-item class="swiperItem_4">
+      
+        <image class='lodding' wx:if="{{loadingMap[2]}}" src='/asset/img/laodd.gif' />
+        <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SInHeight+20}}rpx'>
+          <image class='nearSuec' src='/asset/img/noSuec.png' wx:if="{{showLocationButton}}" bindtap='getLocation' />
+          <view class='nearbyItem' wx:for="{{nearList}}" wx:key="{{item.id}}" data-account-id="{{item.id}}" bindtap='gotoPerson'>
+            <view class='nearbyItemLeft'>
+              <image src='{{item.avatarUrl}}' />
+            </view>
+            <view class='nearbyItemRight'>
+              <label>
+                <label>{{item.nickname}}</label>
+                <view class='persNUNI_sex' wx:if="{{item.gender == 1||item.gender == 2}}">
+                  <image wx:if="{{item.gender == 1}}" src='/asset/img/nanicon2@2x.png' />
+                  <image wx:if="{{item.gender == 2}}" src='/asset/img/nvicon2@2x.png' />
+                </view>
+              </label>
+              <view>
+                <view class='persNUNI_add'>{{item.distance}}</view>
+                <view class='persNUNI_id' wx:if="{{item.dialect}}">{{item.dialect}}</view>
+              </view>
+            </view>
+          </view>
+          <image class='neraNone' src='/asset/img/notalk.png' wx:if="{{!loadingMap[2]&&nearList.length<=0&&!showLocationButton}}" />
+        </scroll-view>
+      </swiper-item>
+
+      <!-- 同乡杂谈 -->
+      <swiper-item class="swiperItem_3">
+
+        <!--新版  -->
+        <view class='swiperNewConChat'>
+          <view class='swiperNewTop'>
+            <label bindtap='moreLanguage' data-type="3">{{queryMap[3].dialect}}老乡群
+              <image class='{{currentInInTab3==1?"moveDw":""}}' src='/asset/img/deed.png' />
+            </label>
+            <view>
+              <image src='/asset/img/qunyaoqing@2x.png' />
+              <button open-type='share' id='tab_talkShare'></button>
+            </view>
+          </view>
+          <view class="swipaerNewChatLeft {{currentInInTab3==0 ? 'moveR1' : currentInInTab3==1 ?'moveL1':''}}">
+            <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SInInHeight+70}}rpx' scroll-with-animation scroll-into-view="{{curTar3Top}}">
+              <!--聊天主体  -->
+              <view class='upGitMore'>
+                <image bindtap='getEarlyTalk' src='/asset/img/GD.png' />
+              </view>
+              <view class='newChatItem' wx:for="{{talkList}}" wx:key="{{item.id}}">
+                <view class='newChatTime' wx:if="{{item.showTime}}">{{filters.parseTime(item.createTime, '{m}-{d} {h}:{i}')}}</view>
+                <!--其他人  -->
+                <view class='newChatCen' wx:if="{{account.id!=item.accountId}}">
+                  <view class='newChatCenLeft' data-account-id="{{item.accountId}}" bindtap='gotoPerson'>
+                    <image src='{{item.avatarUrl}}' />
+
+                    <label wx:if="{{(item.gender==1||item.gender==2)&&item.city}}" class='{{item.gender==1?"sexboy":item.gender==2?"sexgirl":""}}'>{{item.city}}</label>
+
+                  </view>
+                  <view class='newChatCenRight'>
+                    <view class='newChatCRT'>
+                      {{item.nickname}}
+                    </view>
+                    <view class='newChatCRB'>
+                      <view class='newChatCRBLeft'>
+                        <image wx:if="{{item.gender==1}}" src='/asset/img/NAN1.png' />
+                        <image wx:if="{{item.gender==2}}" src='/asset/img/NV1.png' />
+                        <image wx:if="{{item.gender!=1&&item.gender!=2}}" src='/asset/img/leftD.png' />
+                        <view class="{{filters.numberToRound(item.duration/1000)<3? '': (filters.numberToRound(item.duration/1000))<6?'width1': (filters.numberToRound(item.duration/1000))<9?'width2':'width3'}}" data-id="{{item.id}}" data-voice-url="{{item.voiceUrl}}" data-type="talk_hand"
+                          data-index="{{index}}" bindtap="gotoPlay">
+                          <view class='{{item.gender==1?"sexboy":item.gender==2?"sexgirl":""}}'>
+                            <image wx:if="{{playMap.currentPlayId== item.id&& item.gender!=1&&item.gender!=2}}" src='/asset/img/OtherGif.gif' />
+                            <image wx:if="{{playMap.currentPlayId== item.id&& (item.gender==1 || item.gender==2)}}" src='/asset/img/otherNew.gif' />
+                            <image wx:if="{{playMap.currentPlayId!= item.id&& item.gender!=1 && item.gender!=2}}" src='/asset/img/other.png' />
+                            <image wx:if="{{playMap.currentPlayId!= item.id&& (item.gender==1||item.gender==2)}}" src='/asset/img/otherNew.png' />
+                          </view>
+                        </view>
+
+                      </view>
+                      <view class='newChatCRBRihgt'>
+                        <!--红点  -->
+                        <view wx:if="{{readMap[item.id]!=true}}"></view>
+                        <!--时间  -->
+                        <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+                      </view>
+                      <view class='newChatCRBRihgtJB' wx:if="{{playMap.currentPlayId== item.id}}" data-id="{{item.id}}" data-type="talk" data-name="{{item.nickname}}" bindtap='reportShow'>
+                        举报
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+                <!--自己  -->
+                <view class='newChatCenSelf' wx:if="{{account.id==item.accountId}}">
+                  <view class='newChatCenRight'>
+                    <view class='newChatCRB'>
+                      <view class='newChatCRBRihgtJB' data-index="{{index}}" data-id="{{item.id}}" data-type="talk" bindtap='deleteRecord'>
+                        <image src='/asset/img/shanchu@2x.png' />
+                      </view>
+                      <view class='newChatCRBRihgtSelf'>
+
+
+                        <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+                      </view>
+                      <view class='newChatCRBLeftSelf'>
+                        <view data-id="{{item.id}}" data-voice-url="{{item.voiceUrl}}" data-type="talk_hand" data-index="{{index}}" bindtap="gotoPlay">
+
+                          <view class='{{item.gender==1?"sexboy":item.gender==2?"sexgirl":""}}'>
+                            <image wx:if="{{playMap.currentPlayId== item.id&& item.gender!=1&&item.gender!=2}}" src='/asset/img/selfGif.gif' />
+                            <image wx:if="{{playMap.currentPlayId== item.id&& (item.gender==1 || item.gender==2)}}" src='/asset/img/otherNewSelf.gif' />
+                            <image wx:if="{{playMap.currentPlayId!= item.id&& item.gender!=1 && item.gender!=2}}" src='/asset/img/bdf.png' />
+                            <image wx:if="{{playMap.currentPlayId!= item.id&& (item.gender==1||item.gender==2)}}" src='/asset/img/otherNewSelf.png' />
+                          </view>
+                        </view>
+                        <image wx:if="{{item.gender==1}}" src='/asset/img/NAN2.png' />
+                        <image wx:if="{{item.gender==2}}" src='/asset/img/NV2.png' />
+                        <image wx:if="{{item.gender!=1&&item.gender!=2}}" src='/asset/img/rightD.png' />
+
+                      </view>
+                    </view>
+                  </view>
+                  <view class='newChatCenLeftSelf'>
+                    <image src='{{item.avatarUrl}}' />
+                  </view>
+                </view>
+              </view>
+              <!-- 垫底白板 -->
+              <view class='inBottom' id='inBottom'></view>
+            </scroll-view>
+          </view>
+          <view class="swipaerNewChatRight  {{currentInInTab3==0 ? 'moveR2' : currentInInTab3==1 ?'moveL2':''}}">
+            <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SInInHeight+70}}rpx'>
+              <view class='srItem21' wx:for="{{summaryList}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-type="3" data-dialect="{{item.dialect}}" bindtap='selectDialect'>
+                <label>{{item.dialect}}</label>
+                <image src='/asset/img/XIAYIBU@2x.png' />
+              </view>
+
+              <!-- 垫底白板 -->
+              <view class='inBottom'></view>
+            </scroll-view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
+<!--方言秀话题发帖  -->
+<view class='msgHifi' wx:if="{{sendData.showMsg}}">
+  <view class='sendMsgCon'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeMsg' />
+    <view class='smg_title'>发起话题</view>
+    <textarea class='smg_con' placeholder='话题内容' value="{{sendData.content}}" bindinput="inputMsg" placeholder-class='smg_place' maxlength='100'></textarea>
+    <view class='smg_saying'>发帖说明：提交话题后，将由官方进行话题审核。若该话题有趣且有益于方言交流，将会通过审核。</view>
+    <view class='smg_bth {{sendData.content.length>0?"smg_bth33":""}}' id="tab_topic" bindtap='sendMsg'>发起话题</view>
+  </view>
+</view>
+
+<!-- 谚语歌谣底部播放按钮 -->
+<image class='navForTwo' wx:if="{{currentTab==1&&currentInInTab2!=1}}" src='/asset/img/fayan3@2x.png' data-type="song" bindtap='showLuyin' />
+
+<!-- 同乡杂谈底部播放按钮 -->
+<view class='navForThree' wx:if="{{currentTab==3}}">
+  <image src='/asset/img/fayan3@2x.png' />
+  <!-- <image src='/asset/img/fayan3@2x.png' data-type="talk" bindtap='showLuyin' /> -->
+  <form bindsubmit="formSubmit" report-submit="true" id='index_square1'>
+    <button data-type="talk" bindtouchstart="touchdown" bindtouchend="touchup" formType="submit"></button>
+  </form>
+</view>
+
+<!--通用举报  -->
+<view class='msgHifi' wx:if="{{showReport}}">
+  <view class='sendMsgCon'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeReport' />
+    <view class='smg_title'>举报-{{reportMap.username}}</view>
+    <view class='smg_anniu'>
+      <view wx:for="{{reasonList}}" wx:key="{{item}}" data-reason="{{item}}" bindtap='selectReason' class="{{reportMap.reason==item? 'beAn':''}}">{{item}}</view>
+    </view>
+    <textarea class='smg_con' placeholder='其他原因' bindinput="inputReason" placeholder-class='smg_place' maxlength='100'></textarea>
+    <view class='smg_bth {{!reportMap.reason && !reportMap.otherReason?"":"smg_bthM"}}' bindtap='postReport'>确认举报</view>
+  </view>
+</view>
+
+<!-- 歌谣发言 -->
+<view class='msgHifi' wx:if="{{songMap.showSong}}">
+  <view class='sendMsgCon2'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeSong' />
+    <view class='smg_title'>已选定—{{account.dialect}}</view>
+    <view class='sendGyTitle'>
+      <input placeholder='输入谚语歌谣标题' placeholder-style='color:#c0c0c0;' value="{{songMap.title}}" bindinput="inputSongtitle"></input>
+      <label>{{songMap.titleLen}}/10</label>
+    </view>
+
+    <view class='sendGyCon'>
+      <textarea placeholder='告诉大家它的来历或者带给你的回忆吧' value="{{songMap.description}}" placeholder-style='color:#c0c0c0;line-height: 42rpx;' bindinput="inputSongDesc"></textarea>
+      <label>{{songMap.descLen}}/64</label>
+    </view>
+    <!--点击后 luzhianniu22.gif  -->
+    <button class='sendTape2' bindtouchstart="touchdown" bindtouchend="touchup" hidden="{{songMap.filePath}}">
+      <image src='/asset/img/changanluzhi.png' wx:if="{{songSpeaking == false}}" />
+      <image src='/asset/img/luzhianniu22.gif' wx:if="{{songSpeaking == true}}" />
+    </button>
+    <!--长按 -->
+    <view class='sendMore' wx:if="{{songMap.filePath}}">
+      <!--试听时 图片JP@2x.png  -->
+
+      <image wx:if="{{playMap.playType=='song' && playMap.isPlay }}" src='/asset/img/shiting@2x.png' />
+      <image wx:else src='/asset/img/shitingyixia@2x.png' data-type="song" bindtap='bindPlay' />
+      <!--试听 -->
+      <image src='/asset/img/chongxinluzhi3@2x.png' data-type="song" bindtap='refreshLuyin' />
+      <!--重录 -->
+    </view>
+    <!-- 确认发送后的添加样式 smg_bthM -->
+    <view class='smg_bth {{songMap.description.length>0&&songMap.title.length>0&&songMap.filePath?"smg_bthM":""}}' bindtap='uploadSongCreate'>确认发送</view>
+  </view>
+</view>
+<!--新版杂谈发言  -->
+<view class='msgHifi' wx:if="{{talkMap.filePath}}">
+  <view class='newTalk'>
+    <image class='newTalkBg' wx:if="{{playMap.playType=='talk' && playMap.isPlay}}" src='/asset/img/luzhi2.png' />
+    <image class='newTalkBg' wx:else src='/asset/img/luzhi1.png' />
+
+    <view class='newTSecond'>
+      <!--使听众  -->
+      <view wx:if="{{playMap.playType=='talk' && playMap.isPlay }}"></view>
+      <!-- 试听  -->
+      <view wx:else data-type="talk" bindtap='bindPlay'></view>
+      <!-- 重录  -->
+      <view bindtap='closeTalk'></view>
+      <!-- 发送  -->
+      <view bindtap='uploadTalkCreate'></view>
+    </view>
+  </view>
+
+</view>
+<!--选定方言  -->
+
+<view class='msgHifi1' wx:if="{{showIf.showBind}}">
+  <view class='bankTo'>
+    <image class='binkToBg' src='/asset/img/weibangdintanch@2x.jpg' />
+    <image class='binkToYes' src='/asset/img/qianwangbangding@2x.png' bindtap='gotoBind' />
+    <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+    <label>注：进入广场前请确认您的方言语类</label>
+  </view>
+</view>
+
+<view class='msgHifi1' wx:if="{{showIf.showRule}}">
+  <view class='squareRuleCon'>
+    <image class='msgHimg' src='/asset/img/GCWMXY@2x.png' />
+    <view class='squareRuleList'>
+      <label>1.贡献值奖励规则</label>
+      <label>　配音秀发言一次奖励3点</label>
+      <label>　分类榜单前三名奖励10点</label>
+      <label>　总榜单前三奖励20点</label>
+      <label>　童谣、歌曲每发言一次奖励2点</label>
+      <label>　审核通过后奖励18点</label>
+      <label>　榜单前三奖励100点</label>
+      <label>　举报其他用户并核实后，奖励10点</label>
+      <label>2.请保持广场的文明，勿用方言进行辱骂，教唆，地域黑等不文明行为</label>
+      <label>3.请勿发出有关政治及国家等违法乱纪等言论</label>
+      <label>4.请勿发出无效或无意义信息，保持广场的高质量言论哟~</label>
+      <label>5.若发现以上情况，请对该用户其进行举报，我们核实无误后将对举报人进行奖励，违反规则者将被永久禁言</label>
+      <label> 6.请勿随地吐痰，嗯…没了……</label>
+    </view>
+    <view class='squareRuleBut' bindtap='closeRule'>我同意</view>
+  </view>
+</view>
+
+<!--独立背景-正在录音 -->
+<view class='newSpeakImgBg' wx:if="{{isSpeaking}}">
+  <image class='newTalkBg' src='/asset/img/newTalkBg.png' />
+  <view class='newTFrist' wx:if="{{isSpeaking}}">
+    <!-- <label>{{account.dialect}}</label> -->
+    <label>松开下一步</label>
+    <image src='/asset/img/sere.gif' />
+  </view>
+</view>
+
+<!-- 新版发题 -->
+<view class='newSpeakOpen' wx:if="{{currentTab==0}}" bindtap='showMsg'>
+  <image src='/asset/img/faqihuat@2x.png' />
+</view>
+
+<!--筛选按钮  -->
+<image class='nearFilter' wx:if="{{currentTab==2}}" src='/asset/img/shaixuan.png'  bindtap='openFilter'/>
+<!-- 筛选界面  -->
+
+ <template  is="filter"  data="{{showFilter,nowSortChoose,nearSortChoose,nearSortMap}}"></template> 

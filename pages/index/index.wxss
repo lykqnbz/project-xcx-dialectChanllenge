@@ -1,0 +1,223 @@
+/**index.wxss**/
+
+/* .bt_img {
+  width: 642rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: space-between;
+  margin-bottom: 100rpx;
+  min-height: 300rpx;
+  max-height: 310rpx;
+} */
+.bt_img {
+  width: 642rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  height: 510rpx;
+}
+
+.btimg {
+  height: 108rpx;
+  width: 276rpx;
+}
+#index_square1{
+  align-self: flex-end;
+}
+.start {
+  position: relative;
+}
+
+.start>image {
+  height: 108rpx;
+  width: 276rpx;
+}
+
+.start>button {
+  height: 108rpx;
+  width: 276rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: none;
+}
+
+.start>button::after {
+  border: none;
+}
+
+.leader {
+  position: relative;
+}
+
+.leader>image {
+  height: 108rpx;
+  width: 276rpx;
+}
+
+.leader>button {
+  height: 108rpx;
+  width: 276rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: none;
+}
+
+.leader>button::after {
+  border: none;
+}
+
+ .leader, .more {
+  align-self: flex-end;
+} 
+
+.bt_con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  /* height: 610rpx; */
+}
+
+.footer {
+  position: absolute;
+  z-index: 2;
+  bottom: 0px;
+  height: 115rpx;
+  width: 750rpx;
+}
+
+.container_banner {
+  width: 100%;
+  height: 214rpx;
+  z-index: 99999;
+}
+
+.container_banner image {
+  width: 100%;
+  height: 214rpx;
+}
+
+.hifi {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+
+.hifi>image {
+  width: 560rpx;
+  height: 610rpx;
+  position: absolute;
+  top: 191rpx;
+  left: 50%;
+  margin-left: -280rpx;
+}
+
+.fubiao {
+  position: absolute;
+  top: 150rpx;
+  right: 0rpx;
+  width: 100rpx;
+  height: 50rpx;
+}
+
+.clickMe {
+  width: 130rpx;
+  height: 48rpx;
+  border-radius: 10rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  position: absolute;
+  top: 30rpx;
+  right: 40rpx;
+  z-index: 10;
+  border: 2rpx solid #fff;
+}
+
+.bindHifiCon {
+  width: 690rpx;
+  height: 615rpx;
+  position: absolute;
+  top: 188rpx;
+  left: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bindHifiConBg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 690rpx;
+  height: 615rpx;
+  z-index: -1;
+}
+
+.bindHifiConGet {
+  width: 356rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  margin-top: 30rpx;
+}
+
+.bindHifiConList {
+  width: 580rpx;
+  flex: 1;
+  margin-top: 86rpx;
+  font-size: 34rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 52rpx;
+  overflow: auto;
+}
+
+.indexHifi {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+
+.clikeMe {
+  position: fixed;
+  top: 39rpx;
+  right: 50rpx;
+  width: 190rpx;
+  height: 54rpx;
+}
+.redPoint{
+  padding: 0rpx 17rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  background: #FF4545;
+  font-size: 30rpx;
+  color: #fff;
+  position: absolute;
+  right: 36rpx;
+  top: 5rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.grounp{
+  width: 100%;
+  height: 108rpx;
+  margin-top: 80rpx;
+}

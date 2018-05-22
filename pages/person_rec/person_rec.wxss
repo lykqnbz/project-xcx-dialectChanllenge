@@ -1,0 +1,80 @@
+page {
+  height: 100%;
+  background: #f5f5f9;
+}
+
+.psnRec_container {
+  width: 92%;
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30rpx;
+}
+
+.psnRec_main {
+  width: 100%;
+  height: 500rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 10rpx 0 rgba(15, 15, 28, 0.06);
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.psnRec_main>label {
+  font-size: 28rpx;
+  color: #27262c;
+  margin-top: 58rpx;
+}
+
+.pnsRec_btn {
+  width: 242rpx;
+  height: 242rpx;
+  position: relative;
+  margin-top: 70rpx;
+}
+
+.pnsRec_btn>image {
+  width: 242rpx;
+  height: 242rpx;
+}
+
+.pnsRec_btn>button {
+  width: 242rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: none;
+}
+
+.pnsRec_btn>button::after {
+  border: none;
+}
+.pnsRec_btn1{
+  width: 500rpx;
+  height: 242rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100rpx;
+}
+.pnsRec_btn1>image{
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.psnRec_sureBtn {
+  width: 100%;
+  height: 98rpx;
+  border-radius: 100rpx;
+  background: #b5b5b5;
+  line-height: 98rpx;
+  font-size: 36rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 117rpx;
+}
+.blue{
+  background: #6A98FF !important;
+}

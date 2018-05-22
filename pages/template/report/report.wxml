@@ -1,0 +1,13 @@
+<template name="report">
+  <view class='msgHifi' wx:if="{{showReport}}">
+    <view class='sendMsgCon'>
+      <image class='square_exit' src='/asset/img/exit.png' bindtap='closeReport' />
+      <view class='smg_title'>举报-{{reportMap.username}}</view>
+      <view class='smg_anniu'>
+        <view wx:for="{{reasonList}}" wx:key="{{item}}" data-reason="{{item}}" bindtap='selectReason' class="{{reportMap.reason==item? 'beAn':''}}">{{item}}</view>
+      </view>
+      <textarea class='smg_con' placeholder='其他原因' bindinput="inputReason" placeholder-class='smg_place' maxlength='100'></textarea>
+      <view class='smg_bth {{!reportMap.reason && !reportMap.otherReason?"":"smg_bthM"}}' bindtap='postReport'>确认举报</view>
+    </view>
+  </view>
+</template>

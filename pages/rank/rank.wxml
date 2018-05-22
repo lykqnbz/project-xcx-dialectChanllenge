@@ -1,0 +1,47 @@
+<view class='rank_container'>
+  <image src='/asset/img/BJ2.png' class='rank_bg' />
+  <view class='rank'>
+    <label class='shardd'>
+      <image src='/asset/img/shareR.png'></image>
+      <button open-type='share'  id='rank_share'></button>
+    </label>
+    <view wx:for="{{admires}}" wx:key="{{index}}" wx:for-index="index">
+      <view class='rankT' data-id="{{item.id}}" bindtap='showDongHua'>
+        <image class='rankImg' src='{{item.rankCover}}' />
+        <label class='rankCount'>共{{item.rankActor}}人参加</label>
+        <label class='rankSort'>NO.{{index+1}}</label>
+        <label class='rankFinish rank_dz' data-id="{{item.id}}" data-dialect="{{item.dialect}}" data-index="{{index}}" catchtap="zanMethod"  >{{item.admire}}
+          <image src="/asset/img/aixin1.png" wx:if="{{admireDialect !=item.dialect}}"/>
+           <image src="/asset/img/aixin2.png"  wx:if="{{admireDialect ==item.dialect}}"/>
+        </label>
+        <image class='rankImgCC' src='/asset/img/JP@2x.png' />
+      </view>
+
+      <!--donghua  -->
+      <view class="{{showDonghuaMap[item.id]?'rankB donghua':'rankB'}}">
+        <view class='rankBIcon'>
+          <image class='rankBIcon1' src='{{championMap[item.id].avatarUrl}}' />
+          <image class='rankBIcon2' src='/asset/img/zuigaogongxian@2x.png' />
+        </view>
+        <view class='rankBName'>
+          <label>{{championMap[item.id].nickname}}</label>
+          <view>已为{{item.dialect}}题库贡献{{championMap[item.id].contribution}}分</view>
+        </view>
+        <view class='rankBNum'>
+          <view class='rankBNLeft'>
+            <label>{{item.passNo}}</label>
+            <view>当前题库</view>
+          </view>
+          <view class='rankBNRight'>
+            <label>{{item.rankCert}}</label>
+            <view>获得证书</view>
+          </view>
+        </view>
+        <view class='rankBBtn'>
+          <navigator url="/pages/select/select?id={{item.id}}" class='rank_toPlay'>开始答题</navigator>
+          <navigator url="/pages/bank/bank" class='rank_bank'>我要出题</navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

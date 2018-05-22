@@ -1,0 +1,96 @@
+page{
+  background: #F5F5F5;
+}
+.scrollInView {
+  width: 92%;
+  margin-left: 4%;
+}
+
+.perN_spaek {
+  width: 100%;
+  min-height: 222rpx;
+  max-height: 296rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 10rpx 0 rgba(15, 15, 28, 0.06);
+  border-radius: 20rpx;
+  margin-top: 22rpx;
+}
+
+.blue{
+  color: #67b1ff !important;
+}
+.perNSL_bot {
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+  font-size: 30rpx;
+  padding: 0 34rpx;
+  margin-bottom: 34rpx;
+}
+
+.perNSL_bot>view {
+  display: flex;
+  align-items: center;
+  color: #999;
+}
+
+.perNSL_bot>view>image {
+  width: 34rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.perNSL_cen{
+  display: flex;
+  justify-content: space-between;
+  padding: 25rpx 34rpx;
+  flex: 1;
+  align-items: center;
+
+
+}
+.perNSL_cen>label {
+  font-size: 28rpx;
+  color: #666;
+  width: 60%;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+}
+
+
+.perNSL_cen>view {
+  background: #ffe26a;
+  border-radius: 10rpx;
+  width: 184rpx;
+  height: 68rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.perNSL_cen>view>image {
+  width: 27rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}
+.perNS_list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220rpx;
+}
+
+.perNSL_top{
+  height: 80rpx;
+  padding: 0 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 38rpx;
+  font-weight: 600;
+  margin-top: 20rpx;
+}

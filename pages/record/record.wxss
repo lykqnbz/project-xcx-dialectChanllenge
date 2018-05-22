@@ -1,0 +1,285 @@
+page {
+  background: #1e1d23;
+}
+
+.recordBg {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.recordCon {
+  width: 92%;
+  margin-left: 4%;
+  height: 100%;
+}
+
+.noRecord {
+  height: 230rpx;
+  width: 100%;
+  position: absolute;
+  top: 330rpx;
+  left: 0rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  z-index: 23;
+}
+
+.noRecord>label {
+  font-size: 32rpx;
+}
+
+.noRecord>navigator {
+  font-size: 34rpx;
+  width: 380rpx;
+  height: 94rpx;
+  text-align: center;
+  line-height: 94rpx;
+  background: #6db9ff;
+  border-radius: 100rpx;
+}
+
+.scrollInView {
+  width: 100%;
+}
+
+.recordMyhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30rpx;
+  padding-bottom: 12rpx;
+}
+
+.recordItem {
+  width: 100%;
+  height: 88rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.recordView {
+  width: 50%;
+  text-align: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #888;
+  font-size: 32rpx;
+}
+
+.inBottom {
+  width: 100%;
+  height: 50rpx;
+}
+
+.active {
+  background: #6db9ff;
+  font-size: 34rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.recordCon {
+  border-radius: 20rpx 20rpx 0px 0px;
+  overflow: hidden;
+}
+
+.recordListItem {
+  width: 100%;
+  border-radius: 20rpx;
+  height: 280rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.recordListItemTitle {
+  height: 78rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 28rpx;
+  font-size: 30rpx;
+  color: #333;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.recordListItemTitle>view {
+  max-width: 15em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recordListItemTitle>navigator {
+  color: #6db9ff;
+}
+
+.recordListItemCen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.recordListItemCen>label {
+  font-size: 42rpx;
+  color: #1a1e3b;
+  font-weight: 600;
+}
+
+.recordListItemCen>view {
+  background: #ffe26a;
+  border-radius: 10rpx;
+  width: 184rpx;
+  height: 68rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.recordListItemCen>view>image {
+  width: 27rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}
+
+.recordListItemBottom {
+  height: 40rpx;
+  width: 100%;
+  margin-bottom: 18rpx;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recordListItemBottomLeft {
+  width: 40%;
+  font-size: 28rpx;
+  color: #888;
+}
+
+.recordListItemBottomRight {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #293449;
+}
+
+.recordListItemBottomRight>label {
+  margin-left: 20rpx;
+}
+
+.recordListItemBottomRight>view {
+  display: flex;
+  align-items: center;
+}
+
+.recordListItemBottomRight>view>image {
+  width: 26rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.recordListItem2 {
+  width: 100%;
+  border-radius: 20rpx;
+  min-height: 280rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.recordListItemTitle2 {
+  height: 78rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 28rpx;
+  font-size: 38rpx;
+  color: #1a1e3b;
+  font-weight: 600;
+}
+
+.recordListItemTitle2>view {
+  max-width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recordListItemCen2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  flex: 1;
+  margin-bottom: 50rpx;
+  min-height: 130rpx;
+  margin-top: 20rpx;
+}
+
+.recordListItemCen2>label {
+  font-size: 28rpx;
+  color: #666;
+  width: 60%;
+}
+
+.recordListItemCen2>view {
+  background: #ffe26a;
+  border-radius: 10rpx;
+  width: 184rpx;
+  height: 68rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.recordListItemCen2>view>image {
+  width: 27rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}
+
+.bindToSquareSong {
+  position: fixed;
+  width: 410rpx;
+  height: 142rpx;
+  left: 170rpx;
+  bottom: 14rpx;
+}
+
+.bindToSquareSong>view {
+  width: 410rpx;
+  height: 142rpx;
+}
+
+.bindToSquareSong image {
+  width: 410rpx;
+  height: 142rpx;
+}

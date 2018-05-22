@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/more/more",
+    "pages/summary/summary",
+    "pages/select/select",
+    "pages/play/play",
+    "pages/rank/rank",
+    "pages/list/list",
+    "pages/leaderboard/leaderboard",
+    "pages/bank/bank",
+    "pages/trail/trail",
+    "pages/person/person",
+    "pages/bind/bind",
+    "pages/square/square",
+    "pages/square_topic/square_topic",
+    "pages/square_more/square_more",
+    "pages/record/record",
+    "pages/person_rec/person_rec",
+    "pages/person_photo/person_photo",
+    "pages/person_other/person_other",
+    "pages/person_infor/person_infor",
+    "pages/person_chat/person_chat",
+    "pages/person_othermore/person_othermore",
+    "pages/template/filter/filter",
+    "pages/joke/joke",
+    "pages/joke_comments/joke_comments",
+    "pages/template/report/report",
+    "pages/spread/spread",
+    "pages/follow_comments/follow_comments",
+    "pages/song_comments/song_comments"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#27262c",
+    "navigationBarTitleText": "挑战方言",
+    "navigationBarTextStyle": "light"
+  }
+}

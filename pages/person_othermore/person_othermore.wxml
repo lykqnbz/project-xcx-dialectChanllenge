@@ -1,0 +1,34 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class="psnOM_container">
+  <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{wrapHeight-10}}px' bindscrolltolower="showMoreForTalk">
+    <view class='perN_spaek' wx:for="{{talkList}}" wx:key="{{item.id}}">
+      <view class='perNS_list'>
+        <!--歌曲童颜才显示 perNSL_top -->
+        <view class='perNSL_top' wx:if="{{item.type=='song'}}">
+          <label>{{item.title}}</label>
+          <view>{{item.dialect}}</view>
+        </view>
+        <view class='perNSL_cen'>
+          <label>{{item.description}}
+          </label>
+          <view data-id="{{item.id}}" data-index="{{index}}" bindtap="bindPlay">
+            {{filters.numberToRound(item.duration/1000)}}'
+            <image wx:if="{{playMap.currentIndex== index}}" src='/asset/img/bofang.gif' />
+            <image wx:if="{{playMap.currentIndex!= index}}" src='/asset/img/bof@2x.png' />
+          </view>
+        </view>
+        <view class='perNSL_bot'>
+          <label wx:if="{{item.type=='song'}}">歌曲童谣</label>
+          <label wx:else>配音秀-{{item.dialect}}</label>
+          <view data-type="{{item.type}}" data-id="{{item.id}}" data-index="{{index}}" data-dialect-id="{{item.dialectId}}" bindtap="admireHandle">
+             <image wx:if="{{item.hasAdmire == true}}" src='/asset/img/dianz2.png' />
+            <image wx:else src='/asset/img/dianz1.png' />
+            <label class='{{item.hasAdmire?"blue":""}}'>{{item.admire}}</label>
+
+            <!-- <image src='/asset/img/dianz2.png' />{{item.admire}} -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

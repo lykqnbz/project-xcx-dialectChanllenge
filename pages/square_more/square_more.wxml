@@ -1,0 +1,113 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class='squareTopicContainer'>
+  <image class='squareBg' src='/asset/img/BJ2.png' />
+  <view class='squareTopic'>
+    <label>{{show.content}}</label>
+  </view>
+  <scroll-view class='squareList' scroll-y="{{true}}" style='height:{{scrollHeight}}rpx;' bindscrolltolower="loadMore">
+
+    <image class='lodding' wx:if="{{loading}}" src='/asset/img/laodd.gif' />
+    <!--循环体  -->
+    <view class='sqListItem' wx:for='{{follows}}' wx:key='{{item.id}}' wx:for-index="index">
+      <view class='sqlItem_center'>
+        <view class='sqlItemCenLeft'>
+          <view data-account-id="{{item.accountId}}" bindtap='gotoPerson'>
+            <!--  头像  -->
+            <image class='myIccon' src='{{item.avatarUrl}}' />
+            <view>
+              <image wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+              <image wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+            </view>
+            <!--以下CSS控制了  -->
+            <image class='sqImg sqImg1' src='/asset/img/na1.png' />
+            <image class='sqImg sqImg2' src='/asset/img/na2.png' />
+            <image class='sqImg sqImg3' src='/asset/img/na3.png' />
+          </view>
+          <label>{{item.nickname}}</label>
+        </view>
+        <view class='sqlItemCenRight' data-index="{{index}}" bindtap='bindPlay'>
+          <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+          <image wx:if="{{index==currentIndex &&isPlay==true}}" src='/asset/img/bofang.gif' />
+          <image wx:else src='/asset/img/bof@2x.png' />
+        </view>
+      </view>
+      <view class='sqlItem_bot'>
+        <label>{{item.showTime}}</label>
+        <view>
+          <view data-type="follow" data-id="{{item.id}}" data-index="{{index}}" bindtap="admireHandle">
+            <image wx:if="{{admireMap[item.id] == true}}" src='/asset/img/dianz2.png' />
+            <image wx:else src='/asset/img/dianz1.png' />
+            <label class='{{admireMap[item.id]?"blue":""}}'>{{item.admire}}</label>
+          </view>
+          <label wx:if="{{account.enableTest==true}}" data-index="{{index}}" data-id="{{item.id}}" bindtap='deleteShow'>删除</label>
+          <label wx:else data-id="{{item.id}}" data-type="follow" data-name="{{item.nickname}}" bindtap='reportShow'>举报</label>
+          <!--测试人员显示删除  -->
+
+        </view>
+
+      </view>
+
+    </view>
+
+    <!-- 垫底白板 -->
+    <view class='inBottom'></view>
+  </scroll-view>
+</view>
+
+
+<!--录音触发按钮  -->
+<view class='topicPeiYin'>
+  <image src='/asset/img/fayan3@2x.png' />
+  <button data-type="follow" bindtouchstart="touchdown" bindtouchend="touchup"></button>
+</view>
+
+<!-- 录音菜单 -->
+<view class='msgHifi' wx:if="{{notedata.filePath}}">
+  <view class='newTalk'>
+    <image class='newTalkBg' wx:if="{{isRecord==true && playing}}" src='/asset/img/luzhi2.png' />
+    <image class='newTalkBg' wx:else src='/asset/img/luzhi1.png' />
+
+    <view class='newTSecond'>
+      <!-- 试听中  -->
+      <view wx:if="{{isRecord==true && playing}}"></view>
+      <!-- 试听  -->
+      <view wx:else bindtap='tryPlay'></view>
+      <!-- 重录  -->
+      <view bindtap='refreshRecord'></view>
+      <!-- 发送  -->
+      <view bindtap='uploadShowFollow' id='tab_sureSend'></view>
+    </view>
+  </view>
+</view>
+
+<!-- 正在录音 -->
+<view class='newSpeakImgBg' wx:if="{{isSpeaking}}">
+  <image class='newTalkBg' src='/asset/img/newTalkBg.png' />
+  <view class='newTFrist' wx:if="{{isSpeaking}}">
+    <label>{{account.dialect}}</label>
+    <label>松开下一步</label>
+    <image src='/asset/img/sere.gif' />
+  </view>
+</view>
+
+<!--通用举报  -->
+<view class='msgHifi' wx:if="{{showReport}}">
+  <view class='sendMsgCon'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeReport' />
+    <view class='smg_title'>举报-{{reportMap.username}}</view>
+    <view class='smg_anniu'>
+      <view wx:for="{{reasonList}}" wx:key="{{item}}" data-reason="{{item}}" bindtap='selectReason' class="{{reportMap.reason==item? 'beAn':''}}">{{item}}</view>
+    </view>
+    <textarea class='smg_con' placeholder='其他原因' bindinput="inputReason" placeholder-class='smg_place' maxlength='100'></textarea>
+    <view class='smg_bth {{!reportMap.reason && !reportMap.otherReason?"":"smg_bthM"}}' bindtap='postReport'>确认举报</view>
+  </view>
+</view>
+
+<view class='msgHifi1' wx:if="{{showBind}}">
+  <view class='bankTo'>
+    <image class='binkToBg' src='/asset/img/weibangdintanch@2x.jpg' />
+    <image class='binkToYes' src='/asset/img/qianwangbangding@2x.png' bindtap='gotoBind' />
+    <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+    <label>注：进入广场前请确认您的方言语类</label>
+  </view>
+</view>

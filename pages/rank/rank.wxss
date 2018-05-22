@@ -1,0 +1,234 @@
+.rank_bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.rank {
+  padding-top: 22rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 180rpx;
+}
+
+.rank>view {
+  width: 690rpx;
+  min-height: 320rpx; 
+  margin-bottom: 32rpx;
+  position: relative;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.shardd {
+  width: 560rpx;
+  height: 138rpx !important;
+  position: fixed;
+  bottom: 70rpx;
+  left: 95rpx;
+  z-index: 50;
+}
+
+.shardd>image {
+  width: 100%;
+  height: 138rpx;
+}
+
+.shardd>button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 118rpx;
+  background: none;
+}
+
+.shardd>button::after {
+  border: none;
+}
+
+.rankImg {
+  width: 690rpx;
+  height: 320rpx;
+}
+
+.rank>view:nth-child(2) .rankImgCC {
+  display: block;
+}
+
+.rankImgCC {
+  position: absolute;
+  right: 34rpx;
+  top: 56rpx;
+  width: 67rpx;
+  height: 95rpx;
+  display: none;
+}
+
+.rankCount {
+  position: absolute;
+  bottom: 28rpx;
+  left: 28rpx;
+}
+
+.rankSort {
+  position: absolute;
+  bottom: 130rpx;
+  left: 28rpx;
+  font-size: 38rpx;
+}
+
+.rankFinish {
+  position: absolute;
+  bottom: 28rpx;
+  right: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.rankFinish>image {
+  width: 38rpx;
+  height: 32rpx;
+  margin-left: 10rpx;
+}
+
+.rankB {
+  width: 690rpx;
+  height: 0rpx;
+  background: #fff;
+  border-radius: 10px;
+  margin-top: -60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rankBIcon {
+  position: relative;
+  width: 216rpx;
+  height: 172rpx;
+  text-align: center;
+  margin-top: 70rpx;
+}
+
+.rankBIcon1 {
+  width: 128rpx;
+  height: 128rpx;
+  border: 8rpx solid #5e9ad2;
+  border-radius: 50%;
+}
+
+.rankBIcon2 {
+  position: absolute;
+  width: 216rpx;
+  height: 56rpx;
+  bottom: 0px;
+  left: 0px;
+}
+
+.rankT {
+  position: relative;
+}
+
+.rankBName {
+  width: 100%;
+  text-align: center;
+}
+
+.rankBName>label {
+  color: #333;
+  font-size: 32rpx;
+}
+
+.rankBName>view {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.rankBNum {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rankBNLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.rankBNLeft>label {
+  font-size: 80rpx;
+  color: #74b6ff;
+  box-sizing: border-box;
+}
+
+.rankBNLeft>label::after {
+  content: "题";
+  font-size: 24rpx;
+}
+
+.rankBNLeft>view {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.rankBNRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.rankBNRight>label {
+  font-size: 80rpx;
+  color: #74b6ff;
+  box-sizing: border-box;
+}
+
+.rankBNRight>label::after {
+  content: "人";
+  font-size: 24rpx;
+}
+
+.rankBNRight>view {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.rankBBtn {
+  width: 598rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 52rpx;
+}
+
+.rankBBtn>navigator {
+  width: 268rpx;
+  height: 78rpx;
+  background: #5e9ad2;
+  line-height: 78rpx;
+  text-align: center;
+  border-radius: 46rpx;
+  color: #fff;
+  font-weight: 0;
+}
+
+.donghua {
+  animation: mymove 0.5s linear forwards ;
+}
+
+@keyframes mymove {
+  from {
+    height: 0rpx;
+  }
+
+  to {
+    height: 650rpx;
+  }
+}

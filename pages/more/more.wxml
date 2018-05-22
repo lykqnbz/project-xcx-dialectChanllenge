@@ -1,0 +1,15 @@
+<!--pages/more/more.wxml-->
+<view class='container'>
+  <view class='morePlay_li' wx:for="{{apps}}" wx:for-item="item" wx:key="{{item.id}}" data-item="{{item}}" bindtap="openMorePlay">
+    <view>
+      <image src="{{item.icon}}"></image>
+    </view>
+    <view>
+      <view>{{item.name}}
+      </view>
+      <view>
+        {{item.desc}}
+      </view>
+    </view>
+  </view>
+</view>

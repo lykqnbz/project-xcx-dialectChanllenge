@@ -1,0 +1,192 @@
+<!--pages/play/play.wxml-->
+<view class='container'>
+  <view class='trailName'>
+    <image src="{{question.avatarUrl}}" />贡献者：{{question.nickname}}
+
+    <label bindtap='showReport' id='play_error'>举报</label>
+  </view>
+  <image class='bg-container' src='/asset/img/BJ2.png' />
+
+  <!-- 播放 -->
+  <view class='play-wrapper'>
+    <image class='play-people' src='{{gifImg}}'></image>
+    <!-- 音频控制 -->
+    <image class='play-bofang' src='/asset/img/bofang.png' bindtap='playVoice' wx:if='{{isPlay}}'></image>
+  </view>
+
+  <!-- 答题卡 求助 分享 -->
+  <view class='tool-wrapper'>
+    <view class='tool-item' wx:if='{{!forHelp}}'>
+      <image src='/asset/img/datika.png' />
+      <view>答题卡 x {{answerNo}}</view>
+    </view>
+    <view class='tool-item' wx:if='{{!forHelp}}'>
+      <image src='/asset/img/help.png' />
+      <view>求助</view>
+      <button open-type='share' data-type='求助' id='play_help'></button>
+    </view>
+    <view class='tool-item'>
+      <image src='/asset/img/fenxiang.png' />
+      <view>分享</view>
+      <button open-type='share' data-type='分享' id='play_share'></button>
+    </view>
+  </view>
+
+  <!-- 答题选项 -->
+  <view class='options-wrapper'>
+    <view class='options-item' wx:for='{{optionList}}' wx:key="index" bindtap='getOption' data-answer='{{item.answer}}'>
+      <view>{{item.answer}}</view>
+      <!-- 控制是否显示 -->
+      <image class='item_bg' src='/asset/img/xuanxiang.png'></image>
+      <block wx:if='{{item.enable}}'>
+        <image class='item_status' wx:if="{{!item.isTrue}}" src='/asset/img/CUO@2x.png'></image>
+        <image class='item_status' wx:else src='/asset/img/DUI@2x.png'></image>
+      </block>
+    </view>
+  </view>
+
+  <!-- 答案已传递  -->
+  <view class='hifi' wx:if='{{showMap.showPass}}' style='height:{{wrapHeight}}px' bindtap='close' data-sort="pass">
+    <view class='hifi_container'>
+      <image class='hifi_bg' src='/asset/img/bgzz.png' />
+      <label class='hifi_As_title'>答案已传递</label>
+      <view class='hifi_As_bottom'>
+        <view>
+          <image src='/asset/img/fxx@2x.png' />
+          <label>分享</label>
+          <button open-type='share' data-type='分享'></button>
+        </view>
+        <view style='width:200rpx;' bindtap='bindToIndex'>
+          <label>我也要玩</label>
+          <image style='margin-left:5px;' src='/asset/img/XIAYIBU@2x.png' />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 回答正确  -->
+  <view class='hifi' wx:if='{{showMap.showTrue}}' style='height:{{wrapHeight}}px'>
+    <view class='hifi_container_New'>
+      <image class='hifi_bg_New' src='/asset/img/huidazhengq@2x.jpg' />
+      <view class='hifi_As_error'>题目报错</view>
+      <view class='hifi_As_bottom_New'>
+        <view bindtap="reStartCurr">
+          <image src='/asset/img/chongwan@2x.png' />
+        </view>
+        <view class='hiNew_share'>
+          <image src='/asset/img/fenxiangciti@2x.png' />
+          <button open-type='share' data-type='share'></button>
+        </view>
+        <view bindtap='bindToNext'>
+          <image src='/asset/img/xiayiti@2x.png' />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 没有答题卡 -->
+  <view class='hifi' wx:if='{{showMap.showNone}}' style='height:{{wrapHeight}}px' bindtap='close' data-sort="none">
+    <image src='/asset/img/guanbi.png' class='noCardExit' />
+    <view class='hifi_container'>
+      <image class='hifi_bg' src='/asset/img/bgzz.png' />
+      <label class='hifi_As_title'>没有答题卡啦!</label>
+      <view class='hifi_As_bottom_oht'>
+        <label>{{shareTitle}}</label>
+        <image src='/asset/img/suoyao@2x.png' />
+        <button open-type='share' data-type='没答题卡'></button>
+      </view>
+    </view>
+    <navigator url='/pages/square/square' class='noCardToSquare'>
+      <image src='/asset/img/bindToSquare.png' />
+    </navigator>
+  </view>
+
+  <!-- 题库大于等于25题时，用户答完所有题 -->
+  <view class='hifi' wx:if='{{showMap.showEnd}}' style='height:{{wrapHeight}}px;'>
+    <view class='hifiAboutPro' >
+      <image class="hifibg" src='/asset/img/Group13@2x.png' />
+      <image class='hifiImg' src='{{summary.rankCover}}' />
+      <view class='hifiIcon'>
+        <image class='hifiUserIcon' src='{{account.avatarUrl}}' />
+        <image class='hifiDb' src='/asset/img/zhengshu@2x.png' />
+      </view>
+      <!-- <view class='hifiFinish'>通过25题，恭喜获得</view> -->
+      <view class='hifiFinish'>已答完所有题目!</view>
+
+      <view class='hifiBna1'>
+        <label>{{question.dialect}}高级证书</label>
+        <view>语言代码：{{summary.code}}</view>
+      </view>
+      <view class='hifiDoubleBtn'>
+        <!-- <view class='hifiCheck' bindtap='playOther' wx:if="{{endOver}}">挑战其他</view> -->
+        <!-- <view class='hifiCheck' bindtap='continuePlay' wx:if="{{endOver ==false}}">继续答题</view> -->
+        <view class='hifiCheckShare' style='position: relative;'>分享炫耀
+          <button class='ddeeeb' open-type='share' data-type='炫耀'></button>
+        </view>
+        <view class='hifiMyHua' bindtap='gotoSquare'>去广场听更多的方言</view>
+      </view>
+    </view>
+    <ad wx:if="{{showOfficialAdvert}}" class="hifiaAd" unit-id="adunit-7d283053e2190ef1"></ad>
+  </view>
+
+  <!--题库小于25题时，用户答完所有题  -->
+  <view class='hifi' wx:if='{{showMap.showPro}}' style='height:{{wrapHeight}}px;'>
+    <view class='hifiAboutPro1' style='top:{{currentTop}}rpx;'>
+      <image class="hifibg" src='/asset/img/Group13@2x.png' />
+      <image class='hifiImg' src='{{summary.rankCover}}' />
+      <view class='hifiIcon'>
+        <image class='hifiUserIconNo' src='{{account.avatarUrl}}' />
+        <image class='hifiDb' src='/asset/img/weihuode@2x.png' />
+      </view>
+      <!-- <view class='hifiIcon' wx:else>
+      <image class='hifiUserIcon' src='{{account.avatarUrl}}' />
+      <image class='hifiDb' src='/asset/img/zhengshu@2x.png' />
+      </view> -->
+      <view class='hifiFinishNo'>{{question.dialect}}高级证(未获得)</view>
+      <!-- <view class='hifiFinish' wx:else>{{question.dialect}}高级证(已获得)</view> -->
+      <view class='hifiBna'>题库不足</view>
+      <!-- <view class='hifiBna' wx:else>已答完所有题目!</view> -->
+      <view class='hifiDoubleBtn1'>
+        <view class='hifiCheck' bindtap='playOther'>挑战其他</view>
+        <view class='hifiCheck' bindtap='gotoBank'>去出题</view>
+        <!-- <view class='hifiCheck' bindtap='gotoSquare' wx:else>去广场看看</view> -->
+      </view>
+    </view>
+    <ad wx:if="{{showOfficialAdvert}}" class="hifiaAd" unit-id="adunit-7d283053e2190ef1"></ad>
+  </view>
+
+</view>
+
+<!-- 传来答案 -->
+<view class='friendOfAnswer' animation="{{animationData}}">
+  <view>
+    <image src='{{friendAnswer.avatarUrl}}' />
+  </view>
+  <label>好友
+    <label>{{friendAnswer.nickname}}</label>传来答案：此题选{{friendAnswer.answer}}</label>
+</view>
+
+<!--举报原因  -->
+
+
+<view class='trailHifi' wx:if="{{showReport}}">
+  <view class='trailCon'>
+    <image class='trailHifiBg' src='/asset/img/jubaoyuanyin@2x.jpg' />
+    <view class='trailSect'>
+      <view wx:for="{{reportItems}}" class="{{reportReason==item?'active':''}}" data-reason="{{item}}" bindtap="selectReason">{{item}}</view>
+    </view>
+    <view class='trailBtn'>
+      <image class='trailCances' bindtap="reportCancel" src='/asset/img/jubao_quxiao@2x.png' />
+      <image class='trailSure' bindtap='trailReport' src='/asset/img/jubao_queren@2x.png' />
+    </view>
+  </view>
+</view>
+
+<!--答题卡上限  -->
+<view class='trailHifi' wx:if="{{showNoCard}}">
+  <view class="getNoCardCon">
+      <image src='/asset/img/fenxiangshangxian@2x.jpg' />
+      <view class='cloneGetNoCard' bindtap='cloneGetNoCard'>我明白了</view>
+      <view class='gotoSquare'  bindtap='gotoSquare'>去广场看看</view>
+  </view>
+</view>

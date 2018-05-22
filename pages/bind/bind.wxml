@@ -1,0 +1,33 @@
+<view class='bindContainer'>
+  <image class='bindBg' src='/asset/img/mohubeij@2x.jpg' />
+  <scroll-view scroll-y="{{true}}" style='width:100%;height:{{wrapHeight}}px;' scroll-with-animation scroll-into-view='{{sayListId}}'>
+    <view class='bindItem1' wx:if="{{account.dialect!=null}}">
+        <label>当前已选定</label>
+        <view>{{account.dialect}}</view>
+    </view>
+    <view class='bindItem' wx:for="{{summaryList}}" wx:for-index="index" id='{{item.initial}}' wx:key="{{item.id}}" data-index="{{index}}" data-dialect-id="{{item.id}}" bindtap='bindDialect'>
+      {{item.dialect}}
+    </view>
+    <view class='bindItem bindNoMySay'>
+      <label>没有我的方言</label>
+      <view class='bindNoMySayview'>申请创建></view>
+      <button class='bindNoMySaybutton' open-type='contact'></button>
+    </view>
+  </scroll-view>
+</view>
+
+<view class='bindHifi' wx:if="{{showNotice}}">
+  <view class='bindHifiCon'>
+    <image class='bindHifiConBg' src='/asset/img/bangdingshuoming@2x.jpg' />
+    <view class='bindHifiConList'>
+      <label>1.请选定最熟悉的方言语类。</label>
+      <label>2.选定后即可获得出题人及审题人身份，可审核当前选定语类的题库。</label>
+      <label>3.若没有您需要的语类选项，可在“个人中心”页面进行申请创建，您将成为该类语言创建者。</label>
+    </view>
+    <image class='bindHifiConGet' src='/asset/img/WMBL@2x.png' bindtap='closeNotice' />
+  </view>
+</view>
+
+<!-- <view class='city_right'>
+  <text  wx:for='{{letter}}' class='letter_item {{item==sayListId?"blue":""}}' wx:key='this' bindtap='letterTap' data-item='{{item}}'>{{item}}</text>
+</view> -->

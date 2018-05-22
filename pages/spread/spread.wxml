@@ -1,0 +1,36 @@
+<map id="map" longitude="110.762623" latitude="32.678331" scale="6" markers="{{markers}}" bindmarkertap="markertap" style="width: 100%; height: {{wrapHeight*750/wrapWidth-108}}rpx;">
+
+  <cover-image wx:if="{{ifLoadding}}" class='loadding' src='/asset/img/loadding.gif' />
+  <cover-view class='map_out' wx:if="{{listShowMap.ifShow}}" bindtap='cloneShow'>
+    <cover-view class='map_container' catchtap='preventBubbling'>
+      <cover-view class='mapc_title'>
+        <cover-view class='line'></cover-view>
+        <cover-view class='title'>{{distributionList[listShowMap.currentTap].dialect}}</cover-view>
+      </cover-view>
+      <cover-view class='mapc_center'>
+        <cover-view class='mapc_item' wx:for="{{distributionList[listShowMap.currentTap].dataList}}" wx:key="{{item.id}}" data-id='{{item.id}}' bindtap='gotoPerson'>
+          <cover-view class='mapci_left'>
+            <cover-image class='user_img' src='{{item.avatarUrl}}' />
+            <cover-image class='sex_img' wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+            <cover-image class='sex_img' wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+          </cover-view>
+          <cover-view class='mapci_right'>
+            <cover-view class='mapci_label'>{{item.nickname}}</cover-view>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+
+
+</map>
+<view class='hifi' wx:if="{{listShowMap.ifShow}}"></view>
+<canvas canvas-id="myCanvas" class='myCanvas' style='height:157rpx;width:218rpx;'></canvas>
+<view class='bottom'>
+  <view class='bot_left' bindtap='gotoIndex'>
+    <image src='/asset/img/home2.png' />
+  </view>
+  <button class='bottomShare' open-type='share'>
+    <image src='/asset/img/WX@2x.png' /> 看看群内好友说什么方言 >
+  </button>
+</view>

@@ -1,0 +1,739 @@
+.container {
+  align-items: flex-start;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.trailName {
+  height: 100rpx;
+  width: 750rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #fff;
+  position: relative;
+}
+
+.trailName>image {
+  width: 68rpx;
+  height: 68rpx;
+  margin-left: 28rpx;
+  margin-right: 12rpx;
+  border-radius: 50%;
+}
+
+.trailName>label {
+  position: absolute;
+  right: 66rpx;
+  top: 35rpx;
+  font-size: 28rpx;
+}
+
+page {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.play-wrapper {
+  position: relative;
+  text-align: center;
+  width: 750rpx;
+  height: 466rpx;
+}
+
+.play-people {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 310rpx;
+  height: 364rpx;
+}
+
+.play-bofang {
+  position: absolute;
+  height: 88rpx;
+  width: 88rpx;
+  top: 254rpx;
+  right: 220rpx;
+}
+
+.tool-wrapper {
+  color: #fff;
+  font-size: 32rpx;
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+.tool-item {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.tool-item image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.tool-item button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 110rpx;
+  height: 50rpx;
+  background: none;
+}
+
+.tool-item button::after {
+  border: none;
+}
+
+.options-wrapper {
+  width: 750rpx;
+  height: 472rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options-item {
+  width: 590rpx;
+  position: relative;
+  color: #211f26;
+  font-size: 34rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding-left: 50rpx;
+  z-index: 2;
+}
+
+.options-item>view:nth-child(1) {
+  width: 87%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.options-item:nth-child(1)>view:nth-child(1)::before {
+  content: "A.";
+}
+
+.options-item:nth-child(2)>view:nth-child(1)::before {
+  content: "B.";
+}
+
+.options-item:nth-child(3)>view:nth-child(1)::before {
+  content: "C.";
+}
+
+.options-item:nth-child(4)>view:nth-child(1)::before {
+  content: "D.";
+}
+
+.options-item .item_bg {
+  height: 88rpx;
+  width: 640rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+.item_status {
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  margin-top: -17rpx;
+  z-index: 33;
+}
+
+.hifi {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999999;
+}
+
+.hifi_container {
+  width: 625rpx;
+  height: 439rpx;
+  position: absolute;
+  top: 138rpx;
+  left: 62rpx;
+}
+
+.hifi_container_New {
+  width: 610rpx;
+  height: 442rpx;
+  position: absolute;
+  top: 214rpx;
+  left: 70rpx;
+}
+
+.hifi_bg_New {
+  width: 610rpx;
+  height: 442rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.hifi_bg {
+  width: 625rpx;
+  height: 439rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.hifi_As_title {
+  position: absolute;
+  width: 100%;
+  /* margin-left: -50%; */
+  top: 121rpx;
+  /* left: 50%; */
+  font-size: 56rpx;
+  color: #444;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+}
+
+.hifi_As_bottom {
+  position: absolute;
+  width: 410rpx;
+  bottom: 148rpx;
+  left: 50%;
+  margin-left: -200rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hifi_As_bottom_New {
+  position: absolute;
+  width: 462rpx;
+  bottom: 98rpx;
+  left: 50%;
+  margin-left: -231rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hifi_As_bottom_New>view>image {
+  width: 90rpx;
+  height: 136rpx;
+}
+
+.hiNew_share {
+  position: relative;
+}
+
+.hiNew_share>button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 90rpx;
+  height: 136rpx;
+  background: none;
+}
+
+.hiNew_share>button::after {
+  border: none;
+}
+
+.hifi_As_bottom>view:nth-child(1) {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 38rpx;
+  color: #444;
+  height: 45rpx;
+  width: 180rpx;
+}
+
+.hifi_As_bottom>view:nth-child(1)>image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.hifi_As_bottom>view:nth-child(1)>button {
+  position: absolute;
+  height: 45rpx;
+  width: 200rpx;
+  top: 0px;
+  left: 0px;
+  background: none;
+  border: 0px;
+}
+
+.hifi_As_bottom>view:nth-child(1)>button::after {
+  border: none;
+}
+
+.hifi_As_bottom>view:nth-child(2) {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 38rpx;
+  color: #444;
+  height: 45rpx;
+  width: 170rpx;
+}
+
+.hifi_As_bottom>view:nth-child(2)>image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.hifi_As_bottom_oht {
+  width: 480rpx;
+  position: absolute;
+  /* bottom: 95rpx; */
+  bottom: 104rpx;
+  left: 50%;
+  margin-left: -235rpx;
+  font-size: 38rpx;
+  display: flex;
+  align-items: center;
+  height: 129rpx;
+}
+
+.hifi_As_bottom_oht>image {
+  width: 480rpx;
+  height: 129rpx;
+}
+
+.hifi_As_bottom_oht>button {
+  width: 480rpx;
+  height: 129rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  background: none;
+}
+
+.hifi_As_bottom_oht>button::after {
+  border: none;
+}
+
+.hifi_As_bottom_oht>label {
+  display: block;
+  width: 100%;
+  position: absolute;
+  color: white;
+  font-size: 32rpx;
+  top: 0px;
+  line-height: 64rpx;
+  text-align: center;
+  font-weight: bold;
+}
+
+.friendOfAnswer {
+  height: 78rpx;
+  border-radius: 40rpx;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 176rpx;
+  right: -540rpx;
+  display: flex;
+  align-items: center;
+}
+
+.friendOfAnswer>view>image {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  margin-left: 10rpx;
+  margin-top: 5rpx;
+}
+
+.friendOfAnswer>label {
+  font-size: 24rpx;
+  color: #fff;
+  margin-left: 10rpx;
+  padding-right: 20rpx;
+  display: flex;
+}
+
+.friendOfAnswer>label>label {
+  max-width: 6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+}
+
+.hifiAboutPro {
+  position: absolute;
+  top: 30rpx;
+  left: 85rpx;
+  width: 580rpx;
+  height: 910rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.hifiAboutPro .hifibg {
+  width: 580rpx;
+  height: 910rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+.hifiAboutPro1 {
+  position: absolute;
+  top: 44rpx;
+  left: 85rpx;
+  width: 580rpx;
+  height: 780rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.hifiAboutPro1 .hifibg {
+  width: 580rpx;
+  height: 780rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+.hifiImg {
+  width: 560rpx;
+  height: 260rpx;
+  margin-top: 10rpx;
+}
+
+/* .hifiCheck {
+  width: 366rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #5eced2;
+  border-radius: 50rpx;
+  margin-bottom: 60rpx;
+} */
+
+.hifiDoubleBtn {
+  width: 460rpx;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.hifiCheck {
+  width: 220rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #5eced2;
+  border-radius: 50rpx;
+  margin-bottom: 34rpx;
+}
+
+.hifiCheckShare {
+  width: 480rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  color: #5eced2;
+  font-size: 32rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #5eced2;
+  border-radius: 50rpx;
+  margin-bottom: 34rpx;
+}
+
+.ddeeeb {
+  width: 480rpx;
+  height: 78rpx;
+  background: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.ddeeeb:after {
+  border: none;
+}
+
+.hifiDoubleBtn1 {
+  width: 460rpx;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.hifiDoubleBtn1 button {
+  width: 220rpx;
+  height: 78rpx;
+  background: none;
+  position: absolute;
+  right: 0px;
+  top: 0x;
+}
+
+.hifiDoubleBtn1 button:after {
+  border: none;
+}
+
+.hifiFinish {
+  font-size: 34rpx;
+  color: #444;
+  font-weight: 600;
+}
+
+.hifiFinishNo {
+  font-size: 34rpx;
+  color: #aaa;
+  font-weight: 600;
+}
+
+.hifiBna {
+  font-size: 60rpx;
+  color: #5eced2;
+  margin-bottom: 10rpx;
+}
+
+.hifiBna1 {
+  font-size: 60rpx;
+  color: #5eced2;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hifiBna1>view {
+  font-size: 26rpx;
+}
+
+.hifiIcon {
+  width: 216rpx;
+  height: 172rpx;
+  position: relative;
+}
+
+.hifiUserIcon {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 8rpx solid #5e9ad2;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -64rpx;
+}
+
+.hifiUserIconNo {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 8rpx solid #aaa;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -64rpx;
+}
+
+.hifiDb {
+  width: 216rpx;
+  height: 56rpx;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -108rpx;
+}
+
+.trailHifi {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.trailCon {
+  position: absolute;
+  width: 610rpx;
+  height: 442rpx;
+  top: 214rpx;
+  left: 70rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.trailCon>.trailHifiBg {
+  position: absolute;
+  width: 610rpx;
+  height: 442rpx;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: -1;
+}
+
+.trailSect {
+  width: 510rpx;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 160rpx;
+}
+
+.trailSect>view {
+  color: #d3e3ff;
+  font-size: 24rpx;
+  height: 60rpx;
+  padding: 0rpx 21rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  line-height: 60rpx;
+  background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 24rpx;
+}
+
+.trailSect .active {
+  background: rgba(211, 227, 255, 1) !important;
+  color: #000;
+}
+
+.trailBtn {
+  width: 418rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 38rpx;
+}
+
+.trailBtn>image {
+  width: 142rpx;
+  height: 60rpx;
+}
+
+.trailShen {
+  position: fixed;
+  right: 0rpx;
+  top: 32rpx;
+  width: 216rpx;
+  height: 88rpx;
+}
+
+.hifi_As_error {
+  position: absolute;
+  right: 36rpx;
+  top: 44rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.hifiMyHua {
+  width: 480rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #5eced2;
+  border-radius: 50rpx;
+  margin-bottom: 34rpx;
+}
+
+.hifiaAd {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+}
+
+.noCardToSquare {
+  position: absolute;
+  bottom: 100rpx;
+  left: 215rpx;
+  width: 320rpx;
+  height: 98rpx;
+}
+
+.noCardToSquare>image {
+  width: 320rpx;
+  height: 98rpx;
+}
+.noCardExit{
+  position: absolute;
+  top: 80rpx;
+  right: 50rpx;
+  width: 68rpx;
+  height: 68rpx;
+}
+.getNoCardCon{
+  width: 610rpx;
+  height: 442rpx;
+  position: absolute;
+  top: 214rpx;
+  left: 70rpx;
+}
+.getNoCardCon>image{
+  width: 610rpx;
+  height: 442rpx;
+}
+.cloneGetNoCard{
+  position: absolute;
+  bottom: 54rpx;
+  left: 81rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #445058;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6rpx;
+  background: #E8D190 ;
+}
+.gotoSquare{
+  position: absolute;
+  bottom: 54rpx;
+  right: 81rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #445058;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6rpx;
+  background: #E8D190 ;
+}

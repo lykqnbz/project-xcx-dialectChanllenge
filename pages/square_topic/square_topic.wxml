@@ -1,0 +1,93 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class='squareTopicContainer'>
+  <image class='squareBg' src='/asset/img/BJ2.png' />
+  <view class='squareTopic'>
+    <label>{{show.content}}</label>
+  </view>
+  <scroll-view class='squareList' scroll-y="{{true}}" style='height:{{scrollHeight}}rpx;' bindscroll="bindscroll">
+
+    <image class='lodding' wx:if="{{loading}}" src='/asset/img/laodd.gif' />
+    <!--循环体  -->
+    <view class='sqListItem' wx:for="{{topFollows}}" wx:key="{{index}}" wx:for-index="index">
+      <view class='sqlItem_top'>
+        <label>共有{{show.dialectFollowNum[item.dialectId]}}条</label>
+        <navigator url="/pages/square_more/square_more?showId={{showId}}&dialectId={{item.dialectId}}&dialect={{item.dialect}}">查看更多></navigator>
+
+        <!--以下3个CSS已经控制 -->
+        <image class='stN1 stN' src='/asset/img/n1.png' />
+        <image class='stN2 stN' src='/asset/img/n2.png' />
+        <image class='stN3 stN' src='/asset/img/n3.png' />
+      </view>
+      <view class='sqlItem_center'>
+        <view class='sqlItemCenLeft' data-account-id="{{item.accountId}}" bindtap='gotoPerson'>
+          <image src='{{item.avatarUrl}}' />
+          <label>{{item.dialect}}</label>
+          <view>
+            <image wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+            <image wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+          </view>
+        </view>
+        <view class='sqlItemCenRight' data-index="{{index}}" bindtap='bindPlay'>
+          <label>{{filters.numberToRound(item.duration/1000)}}'</label>
+          <image wx:if="{{index==currentIndex &&isPlay==true}}" src='/asset/img/bofang.gif' />
+          <image wx:else src='/asset/img/bof@2x.png' />
+        </view>
+      </view>
+      <view class='sqlItem_bot'>
+        <label>{{item.nickname}}</label>
+        <view>
+          <view data-type="follow" data-id="{{item.id}}" data-index="{{index}}" bindtap="admireHandle">
+            <image wx:if="{{admireMap[item.id] == true}}" src='/asset/img/dianz2.png' />
+            <image wx:else src='/asset/img/dianz1.png' />
+            <label class='{{admireMap[item.id]?"blue":""}}'>{{item.admire}}</label>
+          </view>
+          <label data-id="{{item.id}}" data-type="follow" data-username="{{item.nickname}}" bindtap='reportShow'>举报</label>
+        </view>
+      </view>
+
+    </view>
+
+
+    <!-- 垫底白板 -->
+    <view class='inBottom'></view>
+  </scroll-view>
+</view>
+
+
+<!--配音按钮  -->
+<view bindtap="gotoLuyin" class="topicPeiYin {{moveAem.center==1 ? 'moveCenter1' : moveAem.center==0 ?'moveCenter2':''}}">
+  <image src='/asset/img/peiyin.png' />
+</view>
+
+<!-- 更多话题  -->
+<navigator class="topicLeft {{moveAem.left==1 ? 'moveLeft1' : moveAem.left==0 ?'moveLeft2':''}}" open-type='redirect' url="/pages/square/square">
+  <image src='/asset/img/gengduohuati@2x.png' />
+</navigator>
+
+<!--分享话题  -->
+<view class="topicRight {{moveAem.right==1 ? 'moveRight1' : moveAem.right==0 ?'moveRight2':''}}">
+  <image src='/asset/img/fenxhuati@2x.png' />
+  <button open-type='share'></button>
+</view>
+
+<!--通用举报  -->
+<view class='msgHifi' wx:if="{{showReport}}">
+  <view class='sendMsgCon'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeReport' />
+    <view class='smg_title'>举报-{{reportMap.username}}</view>
+    <view class='smg_anniu'>
+      <view wx:for="{{reasonList}}" wx:key="{{item}}" data-reason="{{item}}" bindtap='selectReason' class="{{reportMap.reason==item? 'beAn':''}}">{{item}}</view>
+    </view>
+    <textarea class='smg_con' placeholder='其他原因' bindinput="inputReason" placeholder-class='smg_place' maxlength='100'></textarea>
+    <view class='smg_bth {{!reportMap.reason && !reportMap.otherReason?"":"smg_bthM"}}' bindtap='postReport'>确认举报</view>
+  </view>
+</view>
+
+<view class='msgHifi1' wx:if="{{showBind}}">
+  <view class='bankTo'>
+    <image class='binkToBg' src='/asset/img/weibangdintanch@2x.jpg' />
+    <image class='binkToYes' src='/asset/img/qianwangbangding@2x.png' bindtap='gotoBind' />
+    <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+    <label>注：进入广场前请确认您的方言语类</label>
+  </view>
+</view>

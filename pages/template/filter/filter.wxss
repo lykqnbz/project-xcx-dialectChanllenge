@@ -1,0 +1,184 @@
+
+.msgHifi1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 33;
+  background: rgba(0, 0, 0, 0.3);
+}
+.filterCon {
+  height: 716rpx;
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filterTitle {
+  height: 98rpx;
+  font-size: 30rpx;
+  color: #6db9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 6rpx 0 rgba(15,15,28,0.06);
+}
+
+.filterFinish {
+  background: #6db9ff;
+  color: #fff;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98rpx;
+  position: relative;
+  z-index: 3;
+}
+
+.filterSort {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 520rpx;
+  width: 100%;
+}
+
+.fssLeft {
+  width: 230rpx;
+  height: 154rpx;
+  display: flex;
+  font-size: 30rpx;
+  color: #1a1e3b;
+  align-items: center;
+  padding-left: 30rpx;
+}
+
+.fssRight {
+  width: 594rpx;
+  height: 154rpx;
+  display: flex;
+  align-items: center;
+}
+
+.fssItem {
+  width: 140rpx;
+  height: 58rpx;
+  border-radius: 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  border: 2rpx solid #888;
+  margin-right: 30rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+.fstItem {
+  width: 140rpx;
+  height: 58rpx;
+  border-radius: 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  border: 2rpx solid #888;
+  margin-right: 30rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  margin-bottom: 34rpx;
+}
+
+.choose {
+  color: #fff !important;
+  border: none !important;
+  background: #6db9ff;
+}
+
+.fsSex {
+  width: 100%;
+  height: 154rpx;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.fsType {
+  width: 100%;
+  height: 366rpx;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.fstLeft {
+  width: 230rpx;
+  height: 366rpx;
+  display: flex;
+  font-size: 30rpx;
+  color: #1a1e3b;
+  flex-direction: column;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+
+.fstLeft>label {
+  height: 58rpx;
+  width: 200rpx;
+}
+
+.fstLeft>view {
+  height: 86rpx;
+  width: 200rpx;
+  color: #d0d0d0;
+  display: flex;
+  align-items: center;
+}
+
+.fstLeft>view>image {
+  display: none;
+  width: 17rpx;
+  height: 17rpx;
+  margin-left: 32rpx;
+  position: relative;
+  z-index: 3;
+}
+.chooseType>image{
+  display: block !important;
+}
+.chooseType{
+  color: #6DB9FF !important;
+}
+.fstRight{
+  width: 594rpx;
+  height: 350rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.fstRightC{
+  display: flex;
+  flex-wrap: wrap;
+}
+.sexLine{
+  position: absolute;
+  width: 1rpx;
+  height: 30rpx;
+  background: #e5e5e5;
+  left: 184rpx;
+  top:62rpx;
+}
+.typeLine{
+  position: absolute;
+  width: 1rpx;
+  height: 350rpx;
+  background: #e5e5e5;
+  left: 184rpx;
+  top:0rpx;
+  z-index: 2;
+}

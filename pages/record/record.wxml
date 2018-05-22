@@ -1,0 +1,90 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class='recordContainer'>
+  <image class='recordBg' src='/asset/img/BJ2.png' />
+  <view class='recordCon'>
+    <view class='recordMyhead'>
+      <view class='recordItem'>
+        <view class="recordView {{currentTab==0 ? 'active' : ''}}" data-current='0' bindtap="swichNav">配音秀</view>
+        <view class="recordView {{currentTab==1 ? 'active' : ''}}" data-current='1' bindtap="swichNav">童谣歌曲</view>
+      </view>
+    </view>
+    <swiper duration="500" class='swiperCon' current="{{currentTab}}" bindchange="bindChange" style='height:{{SHeight}}rpx'>
+      <!-- 配音秀 -->
+      <swiper-item class="swiperItem_1">
+        <view class='noRecord' wx:if="{{listMap[0].length<=0}}">
+          <label>暂无发言记录</label>
+          <navigator open-type='redirect' url="/pages/square/square?currentTab=0">
+            前往配音秀
+          </navigator>
+        </view>
+        <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SHeight}}rpx' bindscrolltolower="showMore">
+          <view class='recordListItem' wx:for="{{listMap[0]}}" wx:key="{{item.id}}" wx:for-index="index">
+            <view class='recordListItemTitle'>
+              <view>{{item.showContent}}</view>
+              <navigator open-type='redirect' url="/pages/square_topic/square_topic?showId={{item.showId}}">查看原帖 ></navigator>
+            </view>
+            <view class='recordListItemCen'>
+              <label>{{item.dialect}}</label>
+              <view data-voice-url="{{item.voiceUrl}}" data-type="follow" data-id="{{item.id}}" data-index="{{index}}" bindtap='bindPlay'>
+                {{filters.numberToRound(item.duration/1000)}}'
+                <image wx:if="{{playMap.currentId== item.id}}" src='/asset/img/bofang.gif' />
+                <image wx:if="{{playMap.currentId!= item.id}}" src='/asset/img/bof@2x.png' />
+              </view>
+            </view>
+            <view class='recordListItemBottom'>
+              <view class='recordListItemBottomLeft'>
+                {{filters.parseTime(item.createTime, '{m}-{d} {h}:{i}')}}
+              </view>
+              <view class='recordListItemBottomRight'>
+                <label>{{item.admire}}人赞</label>
+                <view data-index="{{index}}" data-id="{{item.id}}" data-type="follow" bindtap='deleteRecord'>
+                  <image src='/asset/img/shanchu@2x.png' />删除</view>
+              </view>
+            </view>
+          </view>
+
+          <!-- 垫底白板 -->
+          <view class='inBottom'></view>
+        </scroll-view>
+      </swiper-item>
+      <!-- 歌曲 -->
+      <swiper-item class="swiperItem_2">
+        <scroll-view class='scrollInView' scroll-y="{{true}}" style='height:{{SHeight}}rpx' bindscrolltolower="showMore">
+          <view class='recordListItem2' wx:for="{{listMap[1]}}" wx:key="{{item.id}}" wx:for-index="index">
+            <view class='recordListItemTitle2'>
+              <view>{{item.title}}</view>
+              <label>{{item.dialect}}</label>
+            </view>
+            <view class='recordListItemCen2'>
+              <label> {{item.description}}
+              </label>
+              <view data-voice-url="{{item.voiceUrl}}" data-type="follow" data-id="{{item.id}}" data-index="{{index}}" bindtap='bindPlay'>
+                {{filters.numberToRound(item.duration/1000)}}'
+                <image wx:if="{{playMap.currentId== item.id}}" src='/asset/img/bofang.gif' />
+                <image wx:if="{{playMap.currentId!= item.id}}" src='/asset/img/bof@2x.png' />
+              </view>
+            </view>
+            <view class='recordListItemBottom'>
+              <view class='recordListItemBottomLeft'>
+                {{filters.parseTime(item.createTime, '{m}-{d} {h}:{i}')}}
+              </view>
+              <view class='recordListItemBottomRight'>
+                <label>{{item.admire}}人赞</label>
+                <view data-index="{{index}}" data-id="{{item.id}}" data-type="song" bindtap='deleteRecord'>
+                  <image src='/asset/img/shanchu@2x.png' />删除</view>
+              </view>
+            </view>
+          </view>
+          <view class='bindToSquareSong'>
+            <navigator open-type='redirect' url="/pages/square/square?currentTab=1">
+              <image src='/asset/img/GDGQTY@2x.png' />
+            </navigator>
+          </view>
+          <!-- 垫底白板 -->
+          <view class='inBottom'></view>
+        </scroll-view>
+
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

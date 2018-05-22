@@ -1,0 +1,125 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class='pesN_container'>
+  <view class='pesN_top'>
+    <view class='personTT zindex'>
+      <view class='personTT_Right' bindtap='bindLeaderboard'>
+        <image src='/asset/img/paihangban@2x.png' /> 排行榜
+      </view>
+      <view class='personTT_Left'>
+        <image src='/asset/img/kefu@2x.png' /> 联系客服
+        <button open-type='contact' id='person_contact'></button>
+      </view>
+    </view>
+
+    <view class='pesN_userinfo'>
+      <view class='pesNU_icon'>
+        <image src='{{account.avatarUrl}}' />
+      </view>
+      <view class='pesNU_nick'>
+        <view class='persNUN_ind'>
+          <!-- 有语音介绍  -->
+          <view wx:if="{{account.introUrl}}" bindtap='bindPlay'>
+            <label>个人介绍</label>
+            <view>
+              <label>{{filters.numberToRound(account.introDuration/1000)}}'</label>
+              <image src='/asset/img/bof@2x.png' wx:if="{{!isPlay}}" />
+              <image src='/asset/img/bofang.gif' wx:else />
+            </view>
+          </view>
+          <!--无语音介绍  -->
+
+          <navigator url='/pages/person_rec/person_rec' wx:else>
+            <image src='/asset/img/LZJS@2x.png' />
+          </navigator>
+
+
+        </view>
+        <view class='persNUN_info'>
+
+          <view class='persNUNI_sex'>
+            <image wx:if="{{account.gender == 1}}" src='/asset/img/nan@2x.png' />
+            <image wx:if="{{account.gender == 2}}" src='/asset/img/nv@2x.png' />
+          </view>
+          <view class='persNUNI_add' wx:if="{{account.province}}">{{account.province}} {{account.city}}</view>
+          <view class='persNUNI_id' wx:if="{{account.dialect}}">{{account.dialect}}</view>
+        </view>
+      </view>
+      <navigator url='/pages/person_rec/person_rec' class='pesNU_bind' wx:if="{{account.introUrl}}">
+        录制 >
+      </navigator>
+    </view>
+    <view class='perN_list'>
+      <view>
+        <label>{{account.totalPassNo}}</label>
+        <view>答题对数</view>
+      </view>
+      <label></label>
+      <view>
+        <label>{{account.contribution}}</label>
+        <view>贡献值</view>
+      </view>
+      <label></label>
+      <view>
+        <label>{{account.certNum}}</label>
+        <view>我的证书</view>
+      </view>
+    </view>
+  </view>
+  <view class='pesN_bot'>
+    <!--各入口  -->
+    <view class='personNew'>
+      <navigator class='personNewItem' id='tab_mymsg' url="/pages/person_infor/person_infor">
+        <image src='/asset/img/WDXX@2x.png' />
+        <label>我的消息</label>
+        <!-- ↓↓红点↓↓ -->
+        <view wx:if="{{unReadLetter>0}}" class='redPoint'>{{unReadLetter}}</view>
+      </navigator>
+      <navigator class='personNewItem' id='tab_myrecord' url="/pages/record/record">
+        <image src='/asset/img/FYJL@2x.png' />
+        <label>发言记录</label>
+      </navigator>
+      <navigator class='personNewItem' id='tab_mylist' url="/pages/list/list">
+        <image src='/asset/img/wdzs@2x.png' />
+        <label>我的证书</label>
+      </navigator>
+      <view class='personNewItem' id='tab_bind' bindtap="bindDialect">
+        <image src='/asset/img/XDFY@2x.png' />
+        <label>选定方言</label>
+      </view>
+      <view class='personNewItem' id='tab_create'>
+        <image src='/asset/img/CJFY@2x.png' />
+        <label>创建方言</label>
+        <button open-type='contact'></button>
+      </view>
+      <navigator class='personNewItem' id='tab_bank' url="/pages/bank/bank">
+        <image src='/asset/img/woct@2x.png' />
+        <label>出题审题</label>
+      </navigator>
+    </view>
+    <!--相册  -->
+    <view class='perN_photo'>
+      <view class='perNP_title'>
+        <navigator url='/pages/person_photo/person_photo' id='topic_photoview'>照片展示
+          <image src='/asset/img/TJZP2@2x.png' />
+        </navigator>
+        <view>
+          {{account.photoAdmire}}人喜欢
+        </view>
+      </view>
+      <view class='perNP_list' wx:if="{{photos.length>0}}">
+        <image wx:for="{{photos}}" wx:key="{{item.id}}" mode='aspectFill' src='{{item.photoUrl}}' data-url="{{item.photoUrl}}" bindtap='previewImage' />
+      </view>
+
+      <view class='perNP_listNo' wx:else>
+        <navigator url='/pages/person_photo/person_photo'>
+          <image src='/asset/img/addPh.png' />
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <!--垫底白板 -->
+  <view class='inBottom'></view>
+  <scroll-view class='adInP' wx:if="{{showOfficialAdvert}}">
+    <ad unit-id="adunit-6532d134f90508cc"></ad>
+  </scroll-view>
+</view>

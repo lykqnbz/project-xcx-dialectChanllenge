@@ -1,0 +1,126 @@
+.bindBg{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.bindContainer{
+  width: 716rpx;
+  margin-left: 34rpx;
+}
+.bindItem{
+  border-bottom: 2rpx dashed rgba(255,255,255,0.3);
+  height: 98rpx;
+  line-height: 98rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+.bindNoMySay{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+page{
+  height: 100%;
+}
+.bindNoMySayview{
+  margin-right: 30rpx;
+}
+.bindNoMySaybutton{
+  width: 100%;
+  height: 98rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: none;
+}
+.bindNoMySaybutton::after{
+  border: none;
+}
+
+.bindHifi{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 20;
+  background: rgba(0,0,0,0.6)
+}
+.bindHifiCon{
+  width: 690rpx;
+  height: 615rpx;
+  position: absolute;
+  top: 188rpx;
+  left: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.bindHifiConBg{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  width: 690rpx;
+  height: 615rpx;
+  z-index: -1;
+}
+.bindHifiConGet{
+  width: 356rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  margin-top: 30rpx;
+}
+.bindHifiConList{
+  width: 580rpx;
+  flex: 1;
+  margin-top: 176rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bindHifiConList>label{
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.city_right {
+  width: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: fixed;
+  right: 10rpx;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 19;
+}
+
+.letter_item {
+  flex: 1;
+  display: block;
+  font-size: 22rpx;
+  color: #fff;
+  text-align: center;
+  height:50rpx;
+}
+.blue{
+  color: #aad6ff;
+}
+
+
+.bindItem1{
+  border-bottom: 2rpx dashed rgba(255,255,255,0.3);
+  height: 98rpx;
+  line-height: 98rpx;
+  color: #fff;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.bindItem1>view{
+  margin-right: 20rpx;
+}

@@ -1,0 +1,446 @@
+page {
+  background: #f5f5f9;
+}
+
+/*  新版  */
+
+.pesN_container {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.pesN_top {
+  position: relative;
+  width: 100%;
+  height: 430rpx;
+  background: #27262c;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 30rpx 0rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.personTT {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.personTT>view {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #fff;
+  height: 90rpx;
+  position: relative;
+  box-sizing: border-box;
+  line-height: 90rpx;
+}
+
+.personTT>view>image {
+  width: 32rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.personTT>view>button {
+  position: absolute;
+  width: 170rpx;
+  height: 90rpx;
+  top: 0rpx;
+  left: 0rpx;
+  background: none;
+}
+
+.personTT>view>button::after {
+  border: none;
+}
+
+.pesN_userinfo {
+  width: 100%;
+  height: 144rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.pesNU_icon {
+  width: 144rpx;
+  height: 144rpx;
+  margin-right: 24rpx;
+}
+
+.pesNU_icon>image {
+  width: 144rpx;
+  height: 144rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+}
+
+.pesNU_nick {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 144rpx;
+}
+
+.persNUN_ind {
+  margin-top: 5rpx;
+}
+
+.persNUN_ind>image {
+  width: 286rpx;
+  height: 68rpx;
+}
+
+.persNUN_ind>view {
+  width: 286rpx;
+  height: 68rpx;
+  border-radius: 100rpx;
+  background: #ffe26a;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 24rpx;
+  color: #27262c;
+}
+
+.persNUN_ind>navigator>image {
+  width: 286rpx;
+  height: 68rpx;
+}
+
+.persNUN_ind>view>label {
+  margin-left: 20rpx;
+}
+
+.persNUN_ind>view>view {
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.persNUN_ind>view>view>image {
+  width: 24rpx;
+  height: 28rpx;
+  margin-left: 12rpx;
+}
+
+.persNUN_info {
+  display: flex;
+  height: 40rpx;
+  margin-bottom: 5rpx;
+  align-items: center;
+}
+
+.persNUNI_sex {
+  margin-right: 16rpx;
+  display: flex;
+  align-self: center;
+}
+
+.persNUNI_sex>image {
+  width: 78rpx;
+  height: 38rpx;
+}
+
+.persNUNI_add {
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background: #9fadff;
+  padding: 8rpx 16rpx;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  margin-right: 16rpx;
+  height: 38rpx;
+  box-sizing: border-box;
+  max-width: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.persNUNI_id {
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background: #d29fff;
+  padding: 8rpx 16rpx;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  height: 38rpx;
+  box-sizing: border-box;
+}
+
+.pesNU_bind {
+  width: 100rpx;
+  height: 144rpx;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 28rpx;
+  color: #fff;
+  padding-top: 14rpx;
+  box-sizing: border-box;
+}
+
+.perN_list {
+  width: 690rpx;
+  height: 178rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 10rpx 0 rgba(15, 15, 28, 0.06);
+  border-radius: 20rpx;
+  position: absolute;
+  bottom: -80rpx;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #27262c;
+}
+
+.perN_list>view {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perN_list>label {
+  width: 2rpx;
+  height: 68rpx;
+  background: rgba(39, 38, 44, 0.60);
+  align-self: flex-end;
+  margin-bottom: 36rpx;
+}
+
+.perN_list>view>label {
+  font-size: 60rpx;
+  box-sizing: border-box;
+}
+
+.perN_list>view:nth-child(1)>label::after {
+  content: "题";
+  font-size: 24rpx;
+}
+
+.perN_list>view:nth-child(3)>label::after {
+  content: "点";
+  font-size: 24rpx;
+}
+
+.perN_list>view:nth-child(5)>label::after {
+  content: "本";
+  font-size: 24rpx;
+}
+
+.perN_list>view>view {
+  font-size: 26rpx;
+  color: #888;
+}
+
+.pesN_bot {
+  width: 690rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 102rpx;
+}
+
+.personNew {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  box-shadow: 0 10rpx 10rpx 0 rgba(15, 15, 28, 0.06);
+  border-radius: 20rpx;
+  height: 430rpx;
+  justify-content: flex-start;
+}
+
+.personNewItem {
+  width: 33%;
+  height: 160rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.personNewItem>image {
+  width: 108rpx;
+  height: 108rpx;
+}
+
+.personNewItem>label {
+  font-size: 26rpx;
+  color: #27262c;
+  text-align: center;
+}
+
+.personNewItem>button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 200rpx;
+  background: none;
+}
+
+.personNewItem>button::after {
+  border: none;
+}
+.redPoint{
+  /* min-width: 48rpx; */
+  padding: 0rpx 17rpx;
+  height: 48rpx;
+  position: absolute;
+  left: 130rpx;
+  top: -20rpx;
+  border-radius: 24rpx;
+  background: #FF4545;
+  font-size: 30rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.perN_photo {
+  width: 690rpx;
+  height: 452rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 10rpx 0 rgba(15, 15, 28, 0.06);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  margin-top: 30rpx;
+}
+
+.perNP_title {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: #27262c;
+  padding-left: 24rpx;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 2rpx solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+}
+
+.perNP_title>navigator {
+  display: flex;
+  align-items: center;
+}
+
+.perNP_title>navigator>image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 12rpx;
+}
+
+.perNP_title>view {
+  font-size: 28rpx;
+  color: #979797;
+  margin-right: 24rpx;
+  display: flex;
+  align-items: center;
+}
+.perNP_title>view>image{
+  width: 40rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+
+.perNP_list {
+  width: 642rpx;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.perNP_list>image {
+  width: 153rpx;
+  height: 153rpx;
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
+}
+
+.perNP_list>image:nth-child(4n-2) {
+  margin-left: 10rpx;
+}
+
+.perNP_list>image:nth-child(4n-1) {
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.perNP_list>image:nth-child(n+9) {
+  display: none;
+}
+
+.ad1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 690rpx !important;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  height: 200rpx;
+}
+
+.ad1>image {
+  width: 100% !important;
+}
+
+.perNP_listNo {
+  width: 642rpx;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 24rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.perNP_listNo image {
+  width: 148rpx;
+  height: 204rpx;
+  margin-top: 50rpx;
+  margin-bottom: 5rpx;
+}
+
+.inBottom{
+  width: 100%;
+  height: 220rpx;
+}
+.adInP {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 690rpx !important;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  height: 200rpx;
+  position: fixed;
+  bottom: 0px;
+  left: 30rpx;
+}
+
+.adInP>image {
+  width: 100% !important;
+}

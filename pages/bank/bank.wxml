@@ -1,0 +1,82 @@
+<view class='bankContainer'>
+  <image src='/asset/img/BJ2.png' class='bankBg' />
+
+  <block wx:if="{{dialect}}">
+    <image bindtap="gotoTrail" src='/asset/img/GOshenti@2x.png' class='bankRight' id='bank_trail' />
+    <view class='bankConList'>
+      <view class='bankTopBind'>
+        已选定：{{dialect}}
+      </view>
+      <view class='bankRightAns'>
+        <label>正确答案</label>
+        <input type="text" bindinput="checkAnswer" name="answer" value="{{formData.answer}}"></input>
+      </view>
+      <view class='bankErrorAns'>
+        <label>错误答案</label>
+        <block wx:for="{{formData.options}}" wx:for-index="index" wx:key="{{index}}">
+          <input type="text" bindinput="checkAnswer" name="answer" data-index="{{index}}" value="{{formData.options[index]}}" bindinput="checkOption"></input>
+        </block>
+      </view>
+    </view>
+    <!--播放  -->
+    <view class='bankTape' hidden="{{filePath}}">
+      <image src='{{bankTapeImg}}' />
+      <button bindtouchstart="touchdown" bindtouchend="touchup"></button>
+    </view>
+    <!--重播 试听 -->
+    <view class='bankFinshTape' wx:if="{{filePath}}">
+      <!--点击重播 按钮图标会变成  /asset/img/listts.gif  -->
+      <image src='{{bankFinishTapeImg}}' bindtap='bindPlay' />
+      <image src='/asset/img/chongxinluzhi@2x.png' bindtap='refreshLuzhi' />
+    </view>
+    <form bindsubmit="submitBank" report-submit="true" id='bank_upcheck'>
+      <button class='bankSubmit' formType="submit">
+        提交审核
+      </button>
+    </form>
+  </block>
+
+  <!--绑定方言  -->
+  <view class='bankTo' wx:if="{{showBind}}">
+    <image class='binkToBg' src='/asset/img/weibangdintanch@2x.jpg' />
+    <image class='binkToYes' src='/asset/img/qianwangbangding@2x.png' bindtap='gotoBind' />
+    <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+    <label>注：选定后可获得为当前方言出题的权限</label>
+  </view>
+
+  <!--出题须知  -->
+  <view class='bindHifi' wx:if="{{showNotice}}">
+    <view class='bindHifiCon'>
+      <image class='bindHifiConBg' src='/asset/img/chutixuzhi@2x.jpg' />
+      <view class='bindHifiConList'>
+        <label>1.出题审核成功后，出题者可获得5点贡献值</label>
+        <label>2.请提出与当前选定语言相对应的方言题目</label>
+        <label>3.题目中禁止出现政治、暴利、色情、广告 等一系列违法乱纪的内容</label>
+      </view>
+      <image class='bindHifiConGet' src='/asset/img/WMBL@2x.png' bindtap='closeNotice' />
+    </view>
+  </view>
+
+
+  <!--出题成功  -->
+  <view class='bindHifi' wx:if="{{showSuccess}}">
+    <view class='bankTo '>
+      <image class='binkToBg' src='/asset/img/chutichengg@2x.jpg' />
+      <image class='binkToYes' src='/asset/img/dddd.png' bindtap='closeSuccess' />
+      <image class='binkToNo' src='/asset/img/woyaoshenti@2x.png' bindtap="gotoTrail" />
+
+      <label>注：审题也可以提升贡献值哟~</label>
+    </view>
+  </view>
+
+
+  <!--获取证书 -->
+  <view class='bindHifi' wx:if="{{showZhengshu}}">
+    <view class='bankTo'>
+      <image class='binkToBg' src='/asset/img/weibangdinZStanch@2x.jpg' />
+      <image class='binkToYes' src='/asset/img/d2de.png' bindtap='goGetZh' />
+      <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+      <label>注：选定且获得证书后才可获得资格</label>
+    </view>
+  </view>
+</view>

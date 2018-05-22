@@ -1,0 +1,18 @@
+<view class='psnRec_container'>
+  <view class='psnRec_main'>
+    <label>说一段话让大家更好的认识你吧(自我介绍，兴趣爱好等)</label>
+    <view class='pnsRec_btn' wx:if="{{!formData.filePath}}">
+      <image src='/asset/img/changanfayan@2x.png' wx:if="{{!isSpeaking}}" />
+      <image src='/asset/img/luzhiyuyin.gif' wx:else/>
+      <button bindtouchstart="touchdown" bindtouchend="touchup" ></button>
+    </view>
+    <view class='pnsRec_btn1' wx:else>
+      <image src='/asset/img/shitingyixia@2x.png' wx:if="{{!isPlay}}" bindtap='bindPlay'/>
+      <image src='/asset/img/shiting@2x.png' wx:else/>
+      <image src='/asset/img/chongxinluzhi3@2x.png'  bindtap='refreshLuzhi'/>
+    </view>
+  </view>
+  <view class='psnRec_sureBtn {{formData.filePath?"blue":""}}' bindtap='uploadData'>
+    完成录制
+  </view>
+</view>

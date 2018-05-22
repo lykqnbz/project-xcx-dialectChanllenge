@@ -1,0 +1,8 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#27262c",
+  "navigationBarTitleText": "聊天",
+  "navigationBarTextStyle": "white",
+  "disableScroll": true,
+  "backgroundColor": "#F5F5F5"
+}

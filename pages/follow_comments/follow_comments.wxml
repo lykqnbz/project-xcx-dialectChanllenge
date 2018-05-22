@@ -1,0 +1,124 @@
+<import src="../template/report/report.wxml" />
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class="jokeMore_container">
+  <view class='joke_item'>
+    <view class='ji_top'>
+      <view class='jit_left'>
+        <navigator url="/pages/person_other/person_other?accountId={{joke.accountId}}">
+          <image class='jitl_img' src='{{joke.avatarUrl}}' />
+          <image class='sex_img' wx:if="{{joke.gender==1}}" src='/asset/img/nanicon.png' />
+          <image class='sex_img' wx:if="{{joke.gender==2}}" src='/asset/img/nvicon.png' />
+        </navigator>
+        <label>{{joke.nickname}}-{{joke.dialect}}</label>
+      </view>
+      <view class='jit_right' data-name="{{joke.nickname}}" data-id="{{joke.id}}" data-type="joke" bindtap='reportShow'>
+        举报
+      </view>
+    </view>
+    <view class='ji_center' bindtap='startPlay'>
+      <view class="progress_self {{filters.numberToRound(joke.duration/1000)<9? '': (filters.numberToRound(joke.duration/1000))<15?'width1': (filters.numberToRound(joke.duration/1000))<20?'width2':'width3'}}">
+        <view class='progress_rate' wx:if="{{joke.isPlay || joke.curTimeVal >0}}" style='width:{{joke.curTimeVal}}%;'></view>
+        <view class='progress_rate' wx:elif="{{hasRead}}" style='width:100%;'></view>
+        <view class='progress_rate' wx:else style='width:100%;'></view>
+        <image wx:if="{{joke.isPlay}}" src='/asset/img/bofang.gif' />
+        <image wx:else src='/asset/img/bof@2x.png' />
+      </view>
+      <label>{{filters.numberToRound(joke.duration/1000)}}'</label>
+    </view>
+    <view class='ji_bototm '>
+      <view class='jib_right '>
+
+        <label>几小时之前</label>
+        <!-- <image src='/asset/img/fenxiang@2x.png ' />
+        <button open-type='share'></button> -->
+      </view>
+      <view class='jib_left'>
+        <view class='{{hasAdmire? "blue": ""}} ' data-type="joke" data-id="{{joke.id}}" bindtap="admireHandle">
+          <image wx:if="{{hasAdmire}}" class='jitl_img ' src='/asset/img/zan2@2xx.png' />
+          <image wx:else class='jitl_img ' src='/asset/img/zan1@2x.png' /> {{joke.admire}}
+        </view>
+        <!-- 评论 -->  
+        <view>   
+          <image src='/asset/img/pinglun@2x.png ' /> {{joke.commentNum}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <scroll-view class='jokeMore_talk' wx:if="{{hotCommentList.length>0||newCommentList.length>0}}" scroll-y="{{true}}" style='height:{{wrapHeight*(750/wrapWidth)-340}}rpx;'>
+    <view class='hot_list' wx:if="{{hotCommentList.length>0}}">
+      <view class='list_title'>热门评论({{hotCommentList.length}})</view>
+      <view class='list_item' wx:for="{{hotCommentList}}" wx:key="{{item.id}}" wx:for-index="index">
+        <view class='item_left'>
+          <image class='jitl_img' src='{{item.avatarUrl}}' />
+          <image class='sex_img1' wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+          <image class='sex_img1' wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+        </view>
+        <view class='item_right'>
+          <view class='ir_top'>
+            <view class='irt_left'>
+              <label>{{item.nickname}}</label>
+              <view>{{item.showCreateTime}}</view>
+            </view>
+            <view class='irt_right'>
+              <view class='{{admireMap[item.id]? "blue": ""}} ' data-type="comment" data-id="{{index}}" data-id="{{item.id}}" bindtap="admireHandle">
+                <image wx:if="{{admireMap[item.id]}}" class='jitl_img ' src='/asset/img/zan2@2xx.png' />
+                <image wx:else class='jitl_img ' src='/asset/img/zan1@2x.png' /> {{item.admire}}
+              </view>
+              <label data-name="{{item.nickname}}" data-id="{{item.id}}" data-type="comment" bindtap='reportShow'>举报</label>
+            </view>
+          </view>
+          <view class='ir_bot'>
+            <label>{{item.comment}}
+            </label>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='new_list' wx:if="{{newCommentList.length>0}}">
+      <view class='list_title'>新鲜评论({{newCommentNum}})</view>
+      <view class='list_item' wx:for="{{newCommentList}}" wx:key="{{item.id}}" wx:for-index="index">
+        <view class='item_left'>
+          <image class='jitl_img' src='{{item.avatarUrl}}' />
+          <image class='sex_img1' wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+          <image class='sex_img1' wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+        </view>
+        <view class='item_right'>
+          <view class='ir_top'>
+            <view class='irt_left'>
+              <label>{{item.nickname}}</label>
+              <view>{{item.showCreateTime}}</view>
+            </view>
+            <view class='irt_right'>
+              <view class='{{admireMap[item.id]? "blue": ""}} ' data-type="comment" data-id="{{index}}" data-id="{{item.id}}" bindtap="admireHandle">
+                <image wx:if="{{admireMap[item.id]}}" class='jitl_img ' src='/asset/img/zan2@2xx.png' />
+                <image wx:else class='jitl_img ' src='/asset/img/zan1@2x.png' /> {{item.admire}}
+              </view>
+              <label data-name="{{item.nickname}}" data-id="{{item.id}}" data-type="comment" bindtap='reportShow'>举报</label>
+            </view>
+          </view>
+          <view class='ir_bot'>
+            <label>{{item.comment}}
+            </label>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 垫底白板 -->
+    <view class='inBottom '></view>
+  </scroll-view>
+  <image class='shafa' wx:if="{{hotCommentList.length<=0&&newCommentList.length<=0}}" src='/asset/img/shafa.png' />
+</view>
+
+<!-- 输入框 -->
+<view class='bottom_input'>
+  <view class='bi_left' bindtap='gotoIndex'>
+    <image src='/asset/img/FHSY@2x.png' />
+  </view>
+  <view class='bi_center'>
+    <input type='text' placeholder='期待你的神评论...' bindinput="inputComment" placeholder-class='placeholderC' value="{{comment}}"></input>
+  </view>
+  <view class='bi_right' bindtap='postComment'>发送</view>
+</view>
+<!-- 举报  -->
+<template is="report" data="{{showReport,reasonList,reportMap}}"></template>

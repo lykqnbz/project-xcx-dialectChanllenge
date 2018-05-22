@@ -1,0 +1,24 @@
+<!--pages/select/select.wxml-->
+<view class='container'>
+  <image class='bg-container' src='/asset/img/BJ2.png' />
+
+  <scroll-view class='list-wrapper' scroll-y="{{true}}" style='height:{{scrollHeight}}rpx'>
+    <view class='SSview'>
+      <view class='item-wrapper' wx:for='{{questions}}' wx:key='index'>
+        <!-- 激活关卡 -->
+        <view wx:if='{{item.pass <= pass}}' bindtap='playTap' data-item='{{item.pass}}'>
+          <view class='item-no'>{{item.pass}}</view>
+          <image src='/asset/img/gq1.png'></image>
+        </view>
+        <!-- 未激活关卡 -->
+        <view wx:else bindtap='showNotice'>
+          <view class='item-no'>{{item.pass}}</view>
+          <image src='/asset/img/gq2.png'></image>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='ad'>
+    <ad wx:if="{{showOfficialAdvert}}" unit-id="adunit-6532d134f90508cc"></ad>
+  </view>
+</view>

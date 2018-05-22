@@ -1,0 +1,78 @@
+/**app.wxss**/
+
+
+.bg-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+.ad{
+  /* width: 647rpx !important; */
+  width: 750rpx !important;
+  height: 185rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  /* margin-bottom: 32rpx; */
+  margin-bottom: 0rpx;
+}
+.ad>image{
+  width: 100% !important;
+}
+.adForPerson{
+  width: 690rpx !important;
+  height: 196rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom:10rpx;
+  margin-left: 30rpx;
+}
+.adForPerson>image{
+  width: 100% !important;
+}
+
+.ad1{
+  width: 656rpx !important;
+  height: 188rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 32rpx;
+}
+.ad1>image{
+  width: 100% !important;
+}
+.zindex{
+  position: relative;
+  z-index: 1;
+}
+
+
+.lodding {
+  position: absolute;
+  top: 300rpx;
+  left: 50%;
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: -50rpx;
+  z-index: 12;
+}
+
+navigator:hover{
+  background: none;
+}
+navigator:active{
+  background: none;
+}
+
+.shafa{
+  width: 468rpx;
+  height: 447rpx;
+  margin-left: 141rpx;
+  margin-top: 100rpx;
+}

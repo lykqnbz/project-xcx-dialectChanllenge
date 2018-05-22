@@ -1,0 +1,134 @@
+<image class="leadBBj" src='../../asset/img/BJ2.png' />
+<view class='top'>
+  <label class='bindToindex' bindtap='goToIndex'>
+    <image src='/asset/img/iide.png' />
+  </label>
+  <view class="{{currentTab==0 ? 'active' : ''}}" data-current='0' bindtap="swichNav">
+    玩家排行
+  </view>
+  <view class="{{currentTab==1 ? 'active' : ''}}" data-current='1' bindtap="swichNav">
+    贡献排行
+  </view>
+  <view class="{{currentTab==2 ? 'active' : ''}}" data-current='2' bindtap="swichNav">
+    群内排行
+  </view>
+</view>
+
+<view class='container'>
+  <swiper duration="500" class='top_swiper' current="{{currentTab}}" bindchange="bindChange" style='height:{{wrapHeight}}px'>
+    <block>
+      <!-- 玩家排行 -->
+      <swiper-item class="swiperItem_1 swiperItem">
+        <view class='loadding' wx:if="{{loadingMap[currentTab] == true}}">
+          <image src='/asset/img/laodd.gif' />
+        </view>
+        <scroll-view scroll-y="{{true}}" style="height: {{wrapHeight?wrapHeight-70+'px':'auto'}};position:relative;" bindscrolltolower="showMore">
+          <view class='swiperItem_li' wx:for="{{listMap[currentTab]}}" wx:for-item="rank" wx:key="{{index + 1}}">
+            <view class="{{index<3? 'topNum2' : 'topNum'}}">{{index + 1}}</view>
+            <image class='topNum1' wx:if="{{index==0}}" src='../../asset/img/no1.png'></image>
+            <image class='topNum1' wx:if="{{index==1}}" src='../../asset/img/no2.png'></image>
+            <image class='topNum1' wx:if="{{index==2}}" src='../../asset/img/no3.png'></image>
+            <view class='topIcon'>
+              <image src="{{rank.avatarUrl}}"></image>
+            </view>
+            <view class='topName'>
+              <view>{{rank.nickname}}</view>
+              <label>证书数量：{{rank.certNum}}</label>
+            </view>
+            <view class='topSth'>
+              <label>{{rank.totalPassNo}}</label>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+
+      <!-- 贡献排行 -->
+      <swiper-item class="swiperItem_2 swiperItem">
+        <view class='loadding' wx:if="{{loadingMap[currentTab]}}">
+          <image src='/asset/img/laodd.gif' />
+        </view>
+        <scroll-view scroll-y="{{true}}" style="height: {{wrapHeight?wrapHeight-70+'px':'auto'}};position:relative;" bindscrolltolower="showMore">
+          <view class='swiperItem_li' wx:for="{{listMap[currentTab]}}" wx:for-item="rank" wx:key="{{index + 1}}">
+            <view class="{{index<3? 'topNum2' : 'topNum'}}">{{index + 1}}</view>
+            <image class='topNum1' wx:if="{{index==0}}" src='../../asset/img/no1.png'></image>
+            <image class='topNum1' wx:if="{{index==1}}" src='../../asset/img/no2.png'></image>
+            <image class='topNum1' wx:if="{{index==2}}" src='../../asset/img/no3.png'></image>
+            <view class='topIcon'>
+              <image src="{{rank.avatarUrl}}"></image>
+            </view>
+            <view class='topName'>
+              <view>{{rank.nickname}}</view>
+              <label>{{rank.contributionName}}</label>
+            </view>
+            <view class='topSth1'>
+              <label>{{rank.contribution}}</label>
+              <view>贡献值</view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+
+      <!-- 群内榜 -->
+      <swiper-item class="swiperItem_3 swiperItem">
+        <view class='loadding' wx:if="{{loadingMap[currentTab]}}">
+          <image src='/asset/img/laodd.gif' />
+        </view>
+        <scroll-view scroll-y="{{true}}" style="height: {{wrapHeight?wrapHeight-70+'px':'auto'}};position:relative;" bindscrolltolower="showMore">
+          <view class='swiperItem_li' wx:for="{{listMap[currentTab]}}" wx:for-item="rank" wx:key="{{index + 1}}">
+            <view class="{{index<3? 'topNum2' : 'topNum'}}">{{index + 1}}</view>
+            <image class='topNum1' wx:if="{{index==0}}" src='../../asset/img/no1.png'></image>
+            <image class='topNum1' wx:if="{{index==1}}" src='../../asset/img/no2.png'></image>
+            <image class='topNum1' wx:if="{{index==2}}" src='../../asset/img/no3.png'></image>
+            <view class='topIcon'>
+              <image src="{{rank.avatarUrl}}"></image>
+            </view>
+            <view class='topName'>
+              <view>{{rank.nickname}}</view>
+              <label>证书数量：{{rank.certNum}}</label>
+            </view>
+            <view class='topSth'>
+              <label>{{rank.totalPassNo}}</label>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='bottom_btn_1' wx:if="{{currentTab==0}}">
+    <view class='bb1_left'>
+      <label>{{account.nickname}}</label>
+    </view>
+    <view class='bb1_right'>
+      <view class='bb1r_left'>
+        排名:{{slefMap[currentTab]}}
+      </view>
+      <navigator class='bb1r_right' url="/pages/summary/summary" id='leaderboard_uprank'>
+        <label>提升排行</label>
+      </navigator>
+    </view>
+  </view>
+  <view class='bottom_btn_2' wx:if="{{currentTab==1}}">
+    <view class='bb1_left'>
+      <label>{{account.nickname}}</label>
+    </view>
+    <view class='bb1_right'>
+      <view class='bb1r_left'>
+        贡献: {{slefMap[currentTab]}}
+      </view>
+      <navigator class='bb1r_right' url="/pages/bank/bank" id='leaderboard_devote'>
+        <label>提升贡献</label>
+      </navigator>
+    </view>
+  </view>
+  <view class='bottom_btn_3' wx:if="{{currentTab==2}}">
+    <view class='buttom_btn_3_1'>
+      <view>查看群好友排行</view>
+      <button open-type='share' id='leaderboard_share'></button>
+    </view>
+    <view class='bottom_btn_3_2' bindtap='goToIndex'  id='leaderboard_upQz'>
+      提升群排名
+    </view>
+  </view>
+
+</view>

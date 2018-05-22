@@ -1,0 +1,59 @@
+<!--index.wxml-->
+<view class='container'>
+  <image class='bg-container' src='/asset/img/BJ.jpg'></image>
+  <image class='fubiao' src='{{advert.coverImg}}' wx:if="{{showAdvert}}" style='width:{{advert.width}}rpx;height:{{advert.height}}rpx;top:{{advert.top}}rpx;right:{{advert.right}}rpx;' data-item="{{advert}}" bindtap='openAd' />
+  <!-- <view class='clickMe' bindtap='showTry'>点我试试</view> -->
+  <image class='clikeMe' src='/asset/img/GRZXICON@2x.png' bindtap='indexTap' id='index_person' />
+  <!-- 消息红点  -->
+  <label class='redPoint' wx:if="{{unReadLetter>0}}">{{unReadLetter}}</label>
+  <!-- <view class='bt_con' style='{{showOfficialAdvert?"":"height:510rpx !important"}}'> -->
+  <view class='bt_con' style='height:510rpx !important"}}'>
+    <view class='bt_img' style='height:510rpx !important"}}'>
+      <form bindsubmit="formSubmit" report-submit="true" id='index_summary1'>
+        <view class='start btimg' id='index_summary2'>
+          <image src='/asset/img/kaishi@2x.png' />
+          <button formType="submit" id='index_summary3'></button>
+        </view>
+      </form>
+      <!-- <image class='rank btimg' bindtap='rankTap' src='/asset/img/fangyanpaih@2x.png' id='index_rank'></image> -->
+      <image class='joke btimg' bindtap='jokeTap' src='/asset/img/FYXH@2x.png' id='index_joke' />
+    
+
+      <form bindsubmit="formSubmitForFy" report-submit="true" id='index_square1'>
+        <view class='leader btimg' id='index_square2'>
+          <image src='/asset/img/xxgc.png' id='index_square'></image>
+          <button formType="submit" id='index_square3'></button>
+        </view>
+      </form>
+      <image class='more btimg' bindtap='moreTap' src='/asset/img/syGDHW@2x.png' id='index_more' />
+
+       <image class="grounp" src='/asset/img/check.png'  bindtap='groupTap' /> 
+    </view>
+
+    <!-- <view class='ad'>
+      <ad wx:if="{{showOfficialAdvert}}" unit-id="adunit-9831df240df458bc"></ad>
+    </view> -->
+    <!-- <swiper  circular="{{true}}" autoplay="{{true}}" wx:if="{{banners.length!=0}}">
+      <swiper-item wx:for="{{banners}}" wx:key="{{item.id}}" bindtap='openBanner' data-appid="{{item.appId}}" data-path="{{item.path}}" data-extra="{{item.extra}}">
+        <image src='{{item.image}}' />
+      </swiper-item>
+    </swiper> -->
+  </view>
+
+</view>
+
+<view class='hifi' wx:if="{{hifi_ed}}">
+  <image wx:if="{{!isNew}}" src="/asset/img/DLJLBJ.png" bindtap='everyDay' />
+  <image wx:else src="/asset/img/LYHMRDLJL@2x.png" bindtap='startTap' />
+</view>
+
+<!--点我试试 -->
+<view class='indexHifi' wx:if="{{showTry}}">
+  <view class='bindHifiCon'>
+    <image class='bindHifiConBg' src='/asset/img/LXWOBJ@2x.jpg' />
+    <view class='bindHifiConList'>
+      <text>{{letterMap['notice']}}</text>
+    </view>
+    <image class='bindHifiConGet' bindtap='closeTry' src='/asset/img/WMBL@2x.png' />
+  </view>
+</view>

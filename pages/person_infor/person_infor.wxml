@@ -1,0 +1,23 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class="psnI_container">
+  <image src='/asset/img/notalkList.png' wx:if="{{letterSummaries.length<=0}}"  class='noListImg' />
+  <view class='psnI_list' wx:for="{{letterSummaries}}" wx:key="{{item.id}}">
+    <view class='psnI_item' data-sender-id="{{item.showId}}" data-username="{{item.showNickname}}" bindtap='gotoDetail'>
+      <view class='psnIt_left'>
+        <view class='psnItL_left'>
+          <image src='{{item.showAvatarUrl}}' />
+          <!--  红点  -->
+          <label class='redPoint' wx:if="{{item.unRead>0}}"></label>
+        </view>
+        <view class='psnItL_right'>
+          <label>{{item.showNickname}}</label>
+          <view wx:if="{{item.unRead>0}}">有{{item.unRead}}条未读消息</view>
+               <view wx:else>暂无新消息</view>
+        </view>
+      </view>
+      <view class='psnIt_right'>
+        <label>{{item.lastCreateTime}}</label>
+      </view>
+    </view>
+  </view>
+</view>

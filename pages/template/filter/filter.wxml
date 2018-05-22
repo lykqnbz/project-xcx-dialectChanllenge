@@ -1,0 +1,33 @@
+<template name="filter">
+  <view class='msgHifi1' wx:if="{{showFilter}}" bindtap='cloneFilter'>
+    <view class='filterCon' catchtap="preventBubbling">
+      <view class='filterTitle'>筛选</view>
+      <view class='filterSort'>
+        <view class='fsSex'>
+          <label class='sexLine'></label>
+          <view class='fssLeft'>
+            <label>性别</label>
+          </view>
+          <view class='fssRight'>
+            <view class='fssItem {{nearSortChoose.sex==item?"choose":""}}' wx:for="{{nearSortMap.sex}}" wx:key="{{index}}" data-sex="{{item}}" catchtap='selectFilter'>{{item}}</view>
+          </view>
+        </view>
+        <view class='fsType'>
+          <label class='typeLine'></label>
+          <view class='fstLeft'>
+            <label>方言</label>
+            <view class='{{nowSortChoose.area==index?"chooseType":""}}' wx:for="{{nearSortMap.dialect}}" wx:key="{{index}}" data-area="{{index}}" catchtap='changeDialectArea'>{{index}}
+              <image src='/asset/img/LINGX.png' />
+            </view>
+          </view>
+          <scroll-view class='fstRight' scroll-y="{{true}}">
+            <view class='fstRightC'>
+              <view class='fstItem {{nearSortChoose.dialect==item.dialect?"choose":""}}' wx:for="{{nowSortChoose.dialect}}" wx:key="{{index}}" data-dialect="{{item.dialect}}" data-dialectid="{{item.dialectId}}" catchtap='selectFilter'>{{item.dialect}}</view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+      <view class='filterFinish' catchtap='filterFinish'>完成</view>
+    </view>
+  </view>
+</template>

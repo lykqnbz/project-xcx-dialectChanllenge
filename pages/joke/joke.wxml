@@ -1,0 +1,256 @@
+<import src="../template/filter/filter.wxml" />
+<wxs src="../../filter/filter.wxs" module="filters" />
+<import src="../template/report/report.wxml" />
+<view class='joke_container'>
+  <view class='joke_title'>
+    <view class="{{currentTab==0 ? 'active' : ''}}" data-current='0' bindtap="swichNav">
+      <label>推荐</label>
+    </view>
+    <view class="{{currentTab==1 ? 'active' : ''}}" data-current='1' bindtap="swichNav">
+      <label>热门</label>
+    </view>
+    <view class="{{currentTab==2 ? 'active' : ''}}" data-current='2' bindtap="swichNav">
+      <label>新鲜</label>
+    </view>
+  </view>
+  <view class='joke_center'>
+    <swiper duration="500" current="{{currentTab}}" bindchange="bindChange" style='height:{{wrapHeight-50}}px'>
+      <!-- 推荐 -->
+      <swiper-item class="swiperItem">
+        <scroll-view class='sroll_view' scroll-y="{{true}}" style='height:{{wrapHeight-50}}px' bindscrolltolower="showMore">
+          <view class="sroll_block">
+            <view class='joke_item' wx:for="{{listMap[0]}}" wx:key="{{item.id}}" wx:for-index="index">
+              <view class='ji_top'>
+                <view class='jit_left'>
+                  <navigator url="/pages/person_other/person_other?accountId={{item.accountId}}">
+                    <image class='jitl_img' src='{{item.avatarUrl}}' />
+                    <image class='sex_img' wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+                    <image class='sex_img' wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+                  </navigator>
+                  <label>{{item.nickname}}-{{item.dialect}}</label>
+                </view>
+                 <view class='jit_right' wx:if="{{account.id==item.accountId}}" data-index="{{index}}" data-id="{{item.id}}" data-type="joke" bindtap='deleteRecord'>删除</view>
+                <view class='jit_right' wx:else data-name="{{item.nickname}}" data-id="{{item.id}}" data-type="joke" bindtap='reportShow'>
+                  举报
+                </view>
+              </view>
+              <view class='ji_center' data-index="{{index}}" bindtap='startPlay'>
+                <view class="progress_self {{filters.numberToRound(item.duration/1000)<9? '': (filters.numberToRound(item.duration/1000))<15?'width1': (filters.numberToRound(item.duration/1000))<20?'width2':'width3'}}">
+                  <view class='progress_rate' wx:if="{{playMap.playId==item.id}}" style='width:{{playMap.curTimeVal}}%;'></view>
+                  <view class='progress_rate' wx:elif="{{readMap[item.id]}}" style='width:100%;'></view>
+                  <view class='progress_rate' wx:else style='width:0%;'></view>
+                  <image wx:if="{{playMap.playIndex== index &&playMap.playId==item.id}}" src='/asset/img/bofang.gif' />
+                  <image wx:else src='/asset/img/bof@2x.png' />
+                </view>
+                <label wx:if="{{playMap.playId==item.id}}">{{filters.numberToRound(item.duration/1000)-filters.numberToRound(playMap.currentTime)}}'</label>
+                <label wx:else>{{filters.numberToRound(item.duration/1000)}}'</label>
+              </view>
+              <view class='ji_bototm '>
+                <view class='jib_left'>
+                  <view class='{{admireMap[item.id]? "blue": ""}} ' data-type="joke" data-id="{{item.id}}" data-index="{{index}}" bindtap="admireHandle">
+                    <image wx:if="{{admireMap[item.id]}}" class='jitl_img ' src='/asset/img/zan2@2xx.png' />
+                    <image wx:else class='jitl_img ' src='/asset/img/zan1@2x.png' /> {{item.admire}}
+                  </view>
+                  <!-- 踩 -->
+                  <view class='{{despiseMap[item.id]? "blue": ""}} ' data-type="joke" data-id="{{item.id}}" data-index="{{index}}" bindtap="despiseHandle">
+                    <image wx:if="{{despiseMap[item.id]}}" class='jitl_img ' src='/asset/img/cai2@2x.png ' />
+                    <image wx:else class='jitl_img ' src='/asset/img/cai1@2x.png ' /> {{item.despise}}
+                  </view>
+                  <!-- 评论 -->
+                  <navigator url="/pages/joke_comments/joke_comments?jokeId={{item.id}}">
+                    <image class='jitl_img ' src='/asset/img/pinglun@2x.png ' /> {{item.commentNum}}
+                  </navigator>
+                </view>
+                <view class='jib_right '>
+                  <image class='jitl_img ' src='/asset/img/fenxiang@2x.png ' />
+                  <button data-id="{{item.id}}" open-type='share'></button>
+                </view>
+              </view>
+            </view>
+
+
+            <!-- 垫底白板 -->
+            <view class='inBottom '></view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <!-- 热门 -->
+      <swiper-item class="swiperItem">
+        <scroll-view class='sroll_view' scroll-y="{{true}}" style='height:{{wrapHeight-50}}px' bindscrolltolower="showMore">
+          <view class="sroll_block">
+            <view class='joke_item' wx:for="{{listMap[1]}}" wx:key="{{item.id}}" wx:for-index="index">
+              <view class='ji_top'>
+                <view class='jit_left'>
+                  <navigator url="/pages/person_other/person_other?accountId={{item.accountId}}">
+                    <image class='jitl_img' src='{{item.avatarUrl}}' />
+                    <image class='sex_img' wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+                    <image class='sex_img' wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+                  </navigator>
+                  <label>{{item.nickname}}-{{item.dialect}}</label>
+                </view>
+                 <view class='jit_right' wx:if="{{account.id==item.accountId}}" data-index="{{index}}" data-id="{{item.id}}" data-type="joke" bindtap='deleteRecord'>删除</view>
+                <view class='jit_right' wx:else data-name="{{item.nickname}}" data-id="{{item.id}}" data-type="joke" bindtap='reportShow'>
+                  举报
+                </view>
+              </view>
+              <view class='ji_center' data-index="{{index}}" bindtap='startPlay'>
+                <view class="progress_self {{filters.numberToRound(item.duration/1000)<9? '': (filters.numberToRound(item.duration/1000))<15?'width1': (filters.numberToRound(item.duration/1000))<20?'width2':'width3'}}">
+                  <view class='progress_rate' wx:if="{{playMap.playId==item.id}}" style='width:{{playMap.curTimeVal}}%;'></view>
+                  <view class='progress_rate' wx:elif="{{readMap[item.id]}}" style='width:100%;'></view>
+                  <view class='progress_rate' wx:else style='width:0%;'></view>
+                  <image wx:if="{{playMap.playIndex== index &&playMap.playId==item.id}}" src='/asset/img/bofang.gif' />
+                  <image wx:else src='/asset/img/bof@2x.png' />
+                </view>
+                <label wx:if="{{playMap.playId==item.id}}">{{filters.numberToRound(item.duration/1000)-filters.numberToRound(playMap.currentTime)}}'</label>
+                <label wx:else>{{filters.numberToRound(item.duration/1000)}}'</label>
+              </view>
+              <view class='ji_bototm '>
+                <view class='jib_left'>
+                  <view class='{{admireMap[item.id]? "blue": ""}} ' data-type="joke" data-id="{{item.id}}" data-index="{{index}}" bindtap="admireHandle">
+                    <image wx:if="{{admireMap[item.id]}}" class='jitl_img ' src='/asset/img/zan2@2xx.png' />
+                    <image wx:else class='jitl_img ' src='/asset/img/zan1@2x.png' /> {{item.admire}}
+                  </view>
+                  <!-- 踩 -->
+                  <view class='{{despiseMap[item.id]? "blue": ""}} ' data-type="joke" data-id="{{item.id}}" data-index="{{index}}" bindtap="despiseHandle">
+                    <image wx:if="{{despiseMap[item.id]}}" class='jitl_img ' src='/asset/img/cai2@2x.png ' />
+                    <image wx:else class='jitl_img ' src='/asset/img/cai1@2x.png ' /> {{item.despise}}
+                  </view>
+                  <!-- 评论 -->
+                  <navigator url="/pages/joke_comments/joke_comments?jokeId={{item.id}}">
+                    <image class='jitl_img ' src='/asset/img/pinglun@2x.png ' /> {{item.commentNum}}
+                  </navigator>
+                </view>
+                <view class='jib_right '>
+                  <image class='jitl_img ' src='/asset/img/fenxiang@2x.png ' />
+                  <button data-id="{{item.id}}" open-type='share'></button>
+                </view>
+              </view>
+            </view>
+
+
+
+            <!-- 垫底白板 -->
+            <view class='inBottom '></view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <!-- 新鲜 -->
+      <swiper-item class="swiperItem">
+        <scroll-view class='sroll_view' scroll-y="{{true}}" style='height:{{wrapHeight-50}}px' bindscrolltolower="showMore">
+          <view class="sroll_block">
+            <view class='joke_item' wx:for="{{listMap[2]}}" wx:key="{{item.id}}" wx:for-index="index">
+              <view class='ji_top'>
+                <view class='jit_left'>
+                  <navigator url="/pages/person_other/person_other?accountId={{item.accountId}}">
+                    <image class='jitl_img' src='{{item.avatarUrl}}' />
+                    <image class='sex_img' wx:if="{{item.gender==1}}" src='/asset/img/nanicon.png' />
+                    <image class='sex_img' wx:if="{{item.gender==2}}" src='/asset/img/nvicon.png' />
+                  </navigator>
+                  <label>{{item.nickname}}-{{item.dialect}}</label>
+                </view>
+
+                <view class='jit_right' wx:if="{{account.id==item.accountId}}" data-index="{{index}}" data-id="{{item.id}}" data-type="joke" bindtap='deleteRecord'>删除</view>
+                <view class='jit_right' wx:else data-name="{{item.nickname}}" data-id="{{item.id}}" data-type="joke" bindtap='reportShow'>
+                  举报
+                </view>
+              </view>
+              <view class='ji_center' data-index="{{index}}" bindtap='startPlay'>
+                <view class="progress_self {{filters.numberToRound(item.duration/1000)<9? '': (filters.numberToRound(item.duration/1000))<15?'width1': (filters.numberToRound(item.duration/1000))<20?'width2':'width3'}}">
+                  <view class='progress_rate' wx:if="{{playMap.playId==item.id}}" style='width:{{playMap.curTimeVal}}%;'></view>
+                  <view class='progress_rate' wx:elif="{{readMap[item.id]}}" style='width:100%;'></view>
+                  <view class='progress_rate' wx:else style='width:0%;'></view>
+                  <image wx:if="{{playMap.playIndex== index &&playMap.playId==item.id}}" src='/asset/img/bofang.gif' />
+                  <image wx:else src='/asset/img/bof@2x.png' />
+                </view>
+                <label wx:if="{{playMap.playId==item.id}}">{{filters.numberToRound(item.duration/1000)-filters.numberToRound(playMap.currentTime)}}'</label>
+                <label wx:else>{{filters.numberToRound(item.duration/1000)}}'</label>
+              </view>
+              <view class='ji_bototm '>
+                <view class='jib_left'>
+                  <view class='{{admireMap[item.id]? "blue": ""}} ' data-type="joke" data-id="{{item.id}}" data-index="{{index}}" bindtap="admireHandle">
+                    <image wx:if="{{admireMap[item.id]}}" class='jitl_img ' src='/asset/img/zan2@2xx.png' />
+                    <image wx:else class='jitl_img ' src='/asset/img/zan1@2x.png' /> {{item.admire}}
+                  </view>
+                  <!-- 踩 -->
+                  <view class='{{despiseMap[item.id]? "blue": ""}} ' data-type="joke" data-id="{{item.id}}" data-index="{{index}}" bindtap="despiseHandle">
+                    <image wx:if="{{despiseMap[item.id]}}" class='jitl_img ' src='/asset/img/cai2@2x.png ' />
+                    <image wx:else class='jitl_img ' src='/asset/img/cai1@2x.png ' /> {{item.despise}}
+                  </view>
+                  <!-- 评论 -->
+                  <navigator url="/pages/joke_comments/joke_comments?jokeId={{item.id}}">
+                    <image class='jitl_img ' src='/asset/img/pinglun@2x.png ' /> {{item.commentNum}}
+                  </navigator>
+                </view>
+                <view class='jib_right '>
+                  <image class='jitl_img ' src='/asset/img/fenxiang@2x.png ' />
+                  <button data-id="{{item.id}}" open-type='share'></button>
+                </view>
+              </view>
+            </view>
+
+
+
+            <!-- 垫底白板 -->
+            <view class='inBottom '></view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+
+    </swiper>
+  </view>
+</view>
+
+<!-- 举报  -->
+<template is="report" data="{{showReport,reasonList,reportMap}}"></template>
+
+<!-- 筛选  -->
+<template is="filter" data="{{showFilter,nowSortChoose,nearSortChoose,nearSortMap}}"></template>
+
+<!--底部说话与筛选  -->
+<view class='bottom_choose'>
+  <image src='/asset/img/shuogexiaohua@2x.png' />
+  <view bindtap='showJoke'></view>
+  <label bindtap='openFilter'></label>
+</view>
+
+<!-- 说笑话 -->
+<view class='msgHifi' wx:if="{{showJoke}}">
+  <view class='sendMsgCon2'>
+    <image class='square_exit' src='/asset/img/exit.png' bindtap='closeJoke' />
+    <view class='smg_title'>已选定—{{account.dialect}}</view>
+    <!--点击后 luzhianniu22.gif  -->
+
+    <!--长按 -->
+    <view class='sendMore' wx:if="{{joke.filePath}}">
+
+      <image wx:if="{{trying}}" src='/asset/img/shiting@2x.png' />
+      <image wx:else src='/asset/img/shitingyixia@2x.png' bindtap='bindPlay' />
+      <!--试听 -->
+      <image src='/asset/img/chongxinluzhi3@2x.png' bindtap='refreshLuyin' />
+      <!--重录 -->
+    </view>
+    <button class='sendTape2' bindtouchstart="touchdown" bindtouchend="touchup" wx:if="{{!joke.filePath}}">
+      <image src='/asset/img/changanfayan.png' wx:if="{{!isSpeaking}}" />
+       <image src='/asset/img/luzhiyuyin.gif' wx:if="{{isSpeaking}}" /> 
+      <!-- <view wx:if="{{isSpeaking}}" class='sendTapeView'>
+        <view>{{count}}</view>
+        <label>录制中</label>
+      </view> -->
+    </button>
+    <!-- <label class='sendLabel' wx:if="{{!joke.filePath}}">录制时长限制为5~20s，请注意时间</label> -->
+    <!-- 确认发送后的添加样式 smg_bthM -->
+    <view wx:if="{{joke.filePath}}" class='smg_bth smg_bthM' bindtap='uploadCreate'>确认发送</view>
+    <view wx:else class='smg_bth'>确认发送</view>
+
+  </view>
+</view>
+
+<!--绑定方言  -->
+<view class='msgHifi1' wx:if="{{showBind}}">
+  <view class='bankTo'>
+    <image class='binkToBg' src='/asset/img/weibangdintanch@2x.jpg' />
+    <image class='binkToYes' src='/asset/img/qianwangbangding@2x.png' bindtap='gotoBind' />
+    <image class='binkToNo' src='/asset/img/yihouzaishuo@2x.png' bindtap='gotoBack' />
+    <label>注：进入广场前请确认您的方言语类</label>
+  </view>
+</view>

@@ -1,0 +1,111 @@
+<wxs src="../../filter/filter.wxs" module="filters" />
+<view class='pesN_container'>
+  <view class='pesN_top'>
+    <view class='pesN_userinfo'>
+      <view class='pesNU_icon'>
+        <image src='{{account.avatarUrl}}' />
+      </view>
+      <view class='pesNU_nick'>
+        <view class='persNUN_ind'>
+          <view wx:if="{{account.introUrl}}" data-type='intro' bindtap='bindPlay'>
+            <label>个人介绍</label>
+            <view>
+              <label>{{filters.numberToRound(account.introDuration/1000)}}'</label>
+              <image src='/asset/img/bofang.gif' wx:if="{{isPlay&&type=='intro'}}" />
+              <image src='/asset/img/bof@2x.png' wx:else />
+            </view>
+          </view>
+          <view wx:else>
+            <label style='margin-left:0rpx;'>尚未录制语音介绍</label>
+          </view>
+        </view>
+        <view class='persNUN_info'>
+          <view class='persNUNI_sex'>
+            <image wx:if="{{account.gender == 1}}" src='/asset/img/nan@2x.png' />
+            <image wx:if="{{account.gender == 2}}" src='/asset/img/nv@2x.png' />
+          </view>
+          <view class='persNUNI_add' wx:if="{{account.province}}">{{account.province}} {{account.city}}</view>
+          <view class='persNUNI_id' wx:if="{{account.dialect}}">{{account.dialect}}</view>
+        </view>
+      </view>
+      <navigator url='/pages/person_chat/person_chat?senderId={{accountId}}' class='pesNU_bind'>
+        私信
+      </navigator>
+    </view>
+    <view class='perN_list'>
+      <view>
+        <label>{{account.totalPassNo}}</label>
+        <view>答题对数</view>
+      </view>
+      <label></label>
+      <view>
+        <label>{{account.contribution}}</label>
+        <view>贡献值</view>
+      </view>
+      <label></label>
+      <view>
+        <label>{{account.certNum}}</label>
+        <view>获得证书</view>
+      </view>
+    </view>
+  </view>
+  <view class='pesN_bot'>
+    <view class='perN_spaek'>
+      <view class='perNS_title'>
+        <label>Ta的发言</label>
+        <navigator url="/pages/person_othermore/person_othermore?accountId={{accountId}}" wx:if="{{speak}}">查看更多 ></navigator>
+      </view>
+      <view class='perNS_list' wx:if="{{speak}}">
+        <!--歌曲童颜才显示 perNSL_top -->
+        <view class='perNSL_top' wx:if="{{speak.type=='song'}}">
+          <label>{{speak.title}}</label>
+          <view>{{speak.dialect}}</view>
+        </view>
+        <view class='perNSL_cen'>
+          <label>{{speak.description}}
+          </label>
+          <view data-type='speak' bindtap='bindPlay'>
+            {{filters.numberToRound(speak.duration/1000)}}'
+            <image src='/asset/img/bofang.gif' wx:if="{{isPlay&&type=='speak'}}" />
+            <image src='/asset/img/bof@2x.png' wx:else />
+          </view>
+        </view>
+        <view class='perNSL_bot'>
+          <label wx:if="{{speak.type=='song'}}">歌曲童谣</label>
+          <label wx:else>配音秀-{{speak.dialect}}</label>
+
+          <view bindtap="admireHandle">
+            <image wx:if="{{speak.hasAdmire == true}}" src='/asset/img/dianz2.png' />
+            <image wx:else src='/asset/img/dianz1.png' />
+            <label class='{{speak.hasAdmire?"blue":""}}'>{{speak.admire}}</label>
+          </view>
+        </view>
+      </view>
+      <label class='perNS_none' wx:else>对方暂无发言</label>
+    </view>
+    <!--相册  -->
+    <view class='perN_photo'>
+      <view class='perNP_title'>
+        照片展示
+        <view class='{{admire?"pur":""}}' data-type="photo" data-id="{{accountId}}" bindtap="admireHandleImg">
+          <image src='/asset/img/ZAN2@2x.png' wx:if="{{admire}}" />
+          <image src='/asset/img/ZAN@2x.png' wx:else /> {{account.photoAdmire}}
+        </view>
+      </view>
+      <view class='perNP_list' wx:if="{{photos.length>0}}">
+        <image wx:for="{{photos}}" wx:key="{{item.id}}" mode='aspectFill' src='{{item.photoUrl}}' data-url="{{item.photoUrl}}" bindtap='previewImage' />
+      </view>
+
+      <view class='perNP_listNo' wx:else>
+        <label>对方尚未上传照片</label>
+      </view>
+
+    </view>
+  </view>
+  <!--垫底白板 -->
+  <view class='inBottom'></view>
+</view>
+
+<scroll-view class='adInP' wx:if="{{showOfficialAdvert}}" fixed="{{true}}">
+  <ad unit-id="adunit-62bf639bb656ae8c"></ad>
+</scroll-view>

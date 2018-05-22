@@ -1,0 +1,36 @@
+<!--pages/summary/summary.wxml-->
+<!-- 更种方言页面 -->
+<view class='container'>
+  <image class='bg-container' src='/asset/img/BJ2.png' />
+
+  <image class='lodding' wx:if="{{summaries.length<=-1}}" src='/asset/img/laodd.gif' />
+  <scroll-view wx:else class='list-container' scroll-y="{{true}}" style='height:{{scrollHeight}}rpx'>
+
+    <view class='newSort' wx:for="{{areaMap}}" wx:key="{{index}}">
+      <view class='newSortTitle'>
+        <image wx:if="{{index=='热门方言'}}" src='/asset/img/hot.png' />
+        <label>{{index}}</label>
+      </view>
+      <view class='newSortList'>
+          <view class='newSortItem' wx:for="{{item}}" wx:for-item="itemIn" wx:key="{{itemIn.id}}" bindtap='startPlay' data-id='{{itemIn.id}}' data-dialect='{{itemIn.dialect}}' data-pass='{{passData[itemIn.dialect]}}' data-passno='{{itemIn.passNo}}' >
+              <view>{{itemIn.dialect}}</view>
+              <label>{{passData[itemIn.dialect] ? passData[itemIn.dialect] : 0 }} / {{itemIn.passNo}}</label>
+          </view>
+          <view class='newSortItem' wx:if="{{index!='热门方言'}}">
+              <view>创建方言</view>
+              <button open-type='contact'></button>
+          </view>
+      </view>
+    </view>
+
+    <!-- 垫底透明板 -->
+    <view style='height:170rpx;width:100%;'></view>
+  </scroll-view>
+  <view class='level1' id='summary_bank' style='{{showOfficialAdvert?"":"bottom:20rpx !important"}}' >
+    <image class='level' src='/asset/img/CKZS.png' bindtap='gotoList'></image>
+  </view>
+
+  <view class='ad'>
+    <ad wx:if="{{showOfficialAdvert}}" unit-id="adunit-18d42051f2637a39"></ad>
+  </view>
+</view>

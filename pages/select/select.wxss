@@ -1,0 +1,50 @@
+/* pages/select/select.wxss */
+page{
+  height: 100%;
+}
+.container{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+}
+.list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  width: 100%;
+  margin-top: 66rpx;
+}
+
+.item-wrapper {
+  margin: 0 0 66rpx 54rpx;
+  align-items: center;
+  position: relative;
+  z-index: 22;
+}
+
+.SSview{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.item-no {
+  color: #211F26;
+  line-height: 88rpx;
+  width: 88rpx;
+  font-weight: 590;
+  font-size: 40rpx;
+  text-align: center;
+  z-index: 2;
+}
+
+.item-wrapper image {
+  width: 88rpx;
+  height: 88rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}

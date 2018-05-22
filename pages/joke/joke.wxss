@@ -1,0 +1,416 @@
+@import "../template/filter/filter.wxss";
+@import "../template/report/report.wxss";
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.joke_title {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 34rpx;
+  background: #27262c;
+}
+
+.joke_title>view {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+}
+
+.joke_title>view>label {
+  height: 88rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 5rpx;
+}
+
+.active>label {
+  border-bottom: 4rpx solid #fff;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.sroll_view {
+  background: #f5f5f5;
+}
+
+.sroll_block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.joke_item {
+  width: 694rpx;
+  height: 298rpx;
+  margin-top: 24rpx;
+  background: #fff;
+  box-shadow: 0 6rpx 6rpx 0 rgba(15, 15, 28, 0.06);
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ji_top {
+  height: 116rpx;
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jit_left {
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.jit_left>view {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+  position: relative;
+}
+
+.jit_left>navigator {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+  position: relative;
+}
+
+.jitl_img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.jit_left>label {
+  font-size: 30rpx;
+  color: #616161;
+}
+
+.sex_img {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  bottom: 0px;
+  right: -10rpx;
+}
+
+.jit_right {
+  width: 20%;
+  height: 116rpx;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #bdbdbd;
+  justify-content: flex-end;
+}
+
+.ji_bototm {
+  height: 92rpx;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.jib_left {
+  display: flex;
+  width: 80%;
+}
+
+.jib_right {
+  width: 15%;
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.jib_right>image {
+  width: 30rpx;
+  height: 34rpx;
+  padding-left: 20rpx;
+}
+
+.jib_right>button {
+  width: 60rpx;
+  height: 92rpx;
+  position: absolute;
+  top: 0px;
+  right: 0rpx;
+  background: none;
+}
+
+.jib_right>button::after {
+  border: none;
+}
+
+.jib_left>view {
+  margin-right: 45rpx;
+  font-size: 24rpx;
+  color: #888;
+  display: flex;
+  align-items: center;
+}
+
+.jib_left>view>image {
+  width: 30rpx;
+  height: 34rpx;
+  margin-right: 16rpx;
+}
+
+.jib_left>navigator {
+  margin-right: 45rpx;
+  font-size: 24rpx;
+  color: #888;
+  display: flex;
+  align-items: center;
+}
+
+.jib_left>navigator>image {
+  width: 30rpx;
+  height: 34rpx;
+  margin-right: 16rpx;
+}
+
+.ji_center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 92%;
+}
+
+.ji_center>label {
+  font-size: 36rpx;
+  color: #1a1e3b;
+  margin-left: 30rpx;
+}
+
+.progress_self {
+  width: 270rpx;
+  height: 68rpx;
+  background: #FFEFB7;
+  border-radius: 100rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress_self>image {
+  width: 28rpx;
+  height: 32rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -16rpx;
+  left: 34rpx;
+}
+
+.progress_rate {
+  width: 0%;
+  height: 68rpx;
+  border-top-right-radius: 100rpx;
+  border-bottom-right-radius: 100rpx;
+  background: #ffe26a;
+}
+
+.width1 {
+  width: 330rpx !important;
+}
+
+.width2 {
+  width: 410rpx !important;
+}
+
+.width3 {
+  width: 500rpx !important;
+}
+
+.inBottom {
+  width: 100%;
+  height: 200rpx;
+}
+
+.blue {
+  color: #67b1ff !important;
+}
+
+.bottom_choose {
+  width: 462rpx;
+  height: 136rpx;
+  position: fixed;
+  bottom: 12rpx;
+  left: 144rpx;
+  display: flex;
+}
+
+.bottom_choose>image {
+  width: 462rpx;
+  height: 136rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.bottom_choose>view {
+  width: 65%;
+  height: 106rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.bottom_choose>label {
+  width: 35%;
+  height: 106rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.bankTo {
+  width: 642rpx;
+  height: 596rpx;
+  position: absolute;
+  top: 270rpx;
+  left: 54rpx;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bankTo>label {
+  font-size: 26rpx;
+  margin-bottom: 75rpx;
+  color: #fff;
+}
+
+.binkToBg {
+  width: 642rpx;
+  height: 596rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: -1;
+}
+
+.binkToYes {
+  margin-top: 220rpx;
+}
+
+.binkToYes, .binkToNo {
+  width: 256rpx;
+  height: 88rpx;
+}
+
+.sendMsgCon2 {
+  width: 538rpx;
+  height: 600rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 40rpx 0px rgba(169, 169, 169, 0.36);
+  border-radius: 20rpx;
+  position: absolute;
+  top: 203rpx;
+  left: 106rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.square_exit {
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  z-index: 30;
+  padding: 30rpx;
+}
+
+.smg_title {
+  font-size: 32rpx;
+  color: #1e325b;
+  text-align: center;
+  width: 100%;
+  height: 98rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  line-height: 98rpx;
+  font-weight: 600;
+}
+
+.sendTape2 {
+  width: 190rpx;
+  height: 190rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+  background: none;
+}
+
+.sendTape2::after {
+  border: none;
+}
+
+.sendTape2>image {
+  width: 190rpx;
+  height: 190rpx;
+}
+
+.sendMore {
+  width: 432rpx;
+  display: flex;
+  height: 180rpx;
+  justify-content: space-between;
+}
+
+.sendMore>image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.sendLabel {
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  color: #ccc;
+}
+.sendTapeView{
+  width: 190rpx;
+  height: 190rpx;
+  border-radius: 50%;
+  background: #6DB9FF;
+  position: relative;
+}
+.sendTapeView>view{
+  font-size: 78rpx;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -20rpx;
+  width: 100%;
+}
+.sendTapeView>view::after{
+  content: "s"
+}
+.sendTapeView>label{
+  font-size: 32rpx;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0rpx;
+  width: 100%;
+}

@@ -1,0 +1,55 @@
+<view class='container'>
+  <image src='/asset/img/BJ2.png' class='rank_bg' />
+  <scroll-view class='list-container' scroll-y="{{true}}" style='height:{{scrollHeight}}rpx'>
+    <view class='SSview'>
+      <view class='listss' wx:for="{{certData}}" wx:key="{{index}}" bindtap='openHifi' data-ifget="{{item}}" data-sort="{{index}}">
+        <image src="{{summaryMap[index].certCover}}" style="{{certData[index] == true?'opacity:1':'opacity:0.4'}} " />
+        <label style="{{certData[index] == true?'opacity:1':'opacity:0.4'}} ">{{index}}高级证</label>
+        <view wx:if="{{certData[index] == true}}">已经获得</view>
+        <view wx:else style="opacity:0.4">暂未获得</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class='ad'>
+    <ad wx:if="{{showOfficialAdvert}}" unit-id="adunit-3549c75067ec49fd"></ad>
+  </view>
+</view>
+
+<!-- 有的证书 -->
+<view class='hifi' wx:if='{{isShowForOwn}}' style='height:{{wrapHeight}}px;' bindtap='close' data-sort="ownHif">
+  <view class='hifiAboutPro' style='top:{{currentTop}}rpx;'>
+    <image class="hifibg" src='/asset/img/Group13@2x.png' />
+    <image class='hifiImg' src='{{currentSummary.rankCover}}' />
+    <view class='hifiIcon'>
+      <image class='hifiUserIcon' src='{{account.avatarUrl}}' />
+      <image class='hifiDb' src='/asset/img/zhengshu@2x.png' />
+    </view>
+    <view class='hifiBna'>{{currentSummary.dialect}}高级证书
+      <view class='hifiBna1'>语言代码：{{currentSummary.code}}</view>
+    </view>
+    <view class='hifiDoubleBtn'>
+      <button class='hifiCheck' bindtap='shareToCircle'  id='list_shareQ'>分享到朋友圈</button>
+      <button class='hifiCheck' open-type='share' id='list_shareZ'>分享群炫耀</button>
+    </view>
+  </view>
+</view>
+
+<!-- 没有证书 -->
+<view class='hifi' wx:if='{{isShowForUnown}}' style='height:{{wrapHeight}}px' bindtap='close' data-sort="unownHif">
+  <view class='hifiAboutPro'>
+    <image class="hifibg" src='/asset/img/Group13@2x.png' />
+    <image class='hifiImg' src='{{currentSummary.rankCover}}' />
+    <view class='hifiIcon'>
+      <image class='hifiUserIconF' src='{{account.avatarUrl}}' />
+      <image class='hifiDb' src='/asset/img/weihuode@2x.png' />
+    </view>
+    <view class='hifiBnaF'>{{currentSummary.dialect}}高级证书
+      <view class='hifiBnaF1'>语言代码：{{currentSummary.code}}</view>
+    </view>
+
+    <view  bindtap='playtap'  id='list_toplay'>立刻去获取</view>
+  </view>
+</view>
+
+<canvas canvas-id="myCanvas" class='myCanvas' style='height:{{wrapHeight}}px;width:750rpx;'></canvas>

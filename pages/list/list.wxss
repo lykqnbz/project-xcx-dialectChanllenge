@@ -1,0 +1,213 @@
+.list_container {
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+page{
+  height: 100%;
+}
+.list-container {
+  width: 90%;
+  flex: 1;
+  padding-top: 20rpx;
+}
+
+.rank_bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+
+.list_sort {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 46rpx;
+  width: 658rpx;
+  padding-top: 44rpx;
+}
+
+.SSview{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.listss {
+  width: 220rpx;
+  height: 254rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 56rpx;
+}
+
+.listss>image {
+  width: 128rpx;
+  height: 162rpx;
+}
+
+.hifiAboutPro {
+  position: absolute;
+  top: 74rpx;
+  left: 85rpx;
+  width: 580rpx;
+  height: 874rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.hifiAboutPro .hifibg {
+  width: 580rpx;
+  height: 874rpx;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.hifiImg {
+  width: 560rpx;
+  height: 260rpx;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.hifiCheck {
+  width: 240rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #5eced2;
+  border-radius: 50rpx;
+  margin-bottom: 60rpx;
+  position: relative;
+  padding: 0px;
+}
+#list_toplay {
+  width: 240rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #5eced2;
+  border-radius: 50rpx;
+  margin-bottom: 60rpx;
+  position: relative;
+}
+
+.hifiFinish {
+  font-size: 34rpx;
+  color: #444;
+  font-weight: 600;
+}
+
+.hifiDoubleBtn {
+  width: 520rpx;
+  display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 40rpx; */
+  position: relative;
+}
+
+.hifiBna {
+  font-size: 60rpx;
+  color: #5eced2;
+  position: relative;
+  text-align: center;
+}
+.hifiBna1 {
+  font-size: 26rpx;
+  color: #5eced2;
+  position: relative;
+}
+
+.hifiBnaF {
+  font-size: 60rpx;
+  color: #999;
+  margin-bottom: 0rpx;
+  position: relative;
+  text-align: center;
+}
+.hifiBnaF1 {
+  font-size: 26rpx;
+  color: #999;
+  position: relative;
+}
+
+.hifiIcon {
+  width: 216rpx;
+  height: 172rpx;
+  position: relative;
+}
+
+.hifi {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999999;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hifiUserIcon {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 8rpx solid #5e9ad2;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -64rpx;
+}
+
+.hifiUserIconF {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 8rpx solid #999;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -64rpx;
+}
+
+.hifiDb {
+  width: 216rpx;
+  height: 56rpx;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -108rpx;
+}
+
+.myCanvas {
+  position: absolute;
+  top: -100000px;
+  /* top: 0px;    */
+  left: 0px;
+  background: #000;
+  z-index: 999;
+}
+
+.container{
+  position: relative;
+  height: 100%;
+  display: flex;
+  width: 750rpx;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}

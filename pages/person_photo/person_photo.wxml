@@ -1,0 +1,17 @@
+<view class='psnPhoto_container'>
+  <view class='psnP_list'>
+    <view class='psnP_item' wx:for="{{imageList}}" wx:key="{{item.id}}" wx:for-index="index" data-index="{{index}}" bindtap='selectImg'>
+      <image mode='aspectFill' src='{{item.photoUrl}}' />
+      <view class='item_rigt'>
+        <label wx:if="{{item.check}}"></label>
+      </view>
+    </view>
+
+
+  </view>
+  <view class='psnP_btn'>
+    <view wx:if="{{imageList.length>0}}" bindtap='deletePhoto'>删除选中照片</view>
+    <label wx:if="{{imageList.length>0&&imageList.length<8}}"></label>
+    <view wx:if="{{imageList.length<8}}" bindtap='addImg'>添加照片</view>
+  </view>
+</view>

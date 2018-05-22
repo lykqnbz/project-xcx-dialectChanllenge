@@ -1,0 +1,91 @@
+.psnI_list {
+  margin-top: 20rpx;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 10rpx 10rpx 0 rgba(15, 15, 28, 0.06);
+  margin-bottom: 50rpx;
+}
+
+.psnI_item {
+  width: 100%;
+  height: 144rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.noListImg{
+  width: 450rpx;
+  height: 346rpx;
+  margin-left: 160rpx;
+  margin-top: 60rpx;
+}
+.psnIt_left {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  height: 144rpx;
+}
+
+.psnIt_right {
+  width: 30%;
+  height: 144rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.psnItL_left {
+  margin-right: 18rpx;
+  margin-left: 28rpx;
+  height: 144rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.psnItL_left>image {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+}
+
+.psnItL_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 144rpx;
+}
+
+.psnItL_right>label {
+  font-size: 32rpx;
+  color: #27262c;
+  margin-bottom: 10rpx;
+}
+
+.psnItL_right>view {
+  font-size: 26rpx;
+  color: #7d7d7d;
+}
+
+.psnIt_right>label {
+  font-size: 26rpx;
+  color: #a0a0a0;
+  margin-right: 26rpx;
+  margin-bottom: 50rpx;
+}
+.redPoint{
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  background: #FF7272;
+  position: absolute;
+  right: 0px;
+  top: 25rpx;
+}
+.notalklist{
+  width: 350rpx;
+  height: 260rpx;
+  margin-left: 200rpx;
+  margin-top: 100rpx;
+}

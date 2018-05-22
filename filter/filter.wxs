@@ -1,0 +1,89 @@
+var parseTime = function (time, cFormat) {
+  if (arguments.length === 0) {
+    return null;
+  }
+
+  if ((time + '').length === 10) {
+    time = +time * 1000
+  }
+
+  var format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+  var timeStr = format;
+  var date;
+  if (typeof time == 'object') {
+    date = time;
+  } else {
+    date = getDate(time);
+  }
+  var formatObj = {
+    y: date.getFullYear(),
+    m: date.getMonth() + 1,
+    d: date.getDate(),
+    h: date.getHours(),
+    i: date.getMinutes(),
+    s: date.getSeconds(),
+    a: date.getDay()
+  };
+
+  if (format.indexOf('{y}') !== -1) {
+    timeStr = timeStr.replace('{y}', formatObj['y']);
+
+  }
+  if (format.indexOf('{m}') !== -1) {
+    timeStr = timeStr.replace('{m}', formatObj['m'] < 10 ? '0' + formatObj['m'] : formatObj['m']);
+
+  }
+  if (format.indexOf('{d}') !== -1) {
+    timeStr = timeStr.replace('{d}', formatObj['d'] < 10 ? '0' + formatObj['d'] : formatObj['d']);
+
+  }
+  if (format.indexOf('{h}') !== -1) {
+    timeStr = timeStr.replace('{h}', formatObj['h'] < 10 ? '0' + formatObj['h'] : formatObj['h']);
+
+  }
+  if (format.indexOf('{i}') !== -1) {
+    timeStr = timeStr.replace('{i}', formatObj['i'] < 10 ? '0' + formatObj['i'] : formatObj['i']);
+
+  }
+  if (format.indexOf('{s}') !== -1) {
+    timeStr = timeStr.replace('{s}', formatObj['s'] < 10 ? '0' + formatObj['s'] : formatObj['s']);
+
+  }
+  if (format.indexOf('{a}') !== -1) {
+    timeStr = timeStr.replace('{a}', formatObj['a']);
+
+  }
+
+  return timeStr;
+}
+
+var fomatMoney2 = function (value) {
+  if (value == 0 || value == null || isNaN(value)) {
+    return '0.00';
+  }
+  return value.toFixed(2) + '';
+}
+
+var transformNumToW = function (num) {
+  if (num > 10000) {
+    return Math.ceil(num / 10000) + '万';
+  } else {
+    return num;
+  }
+}
+
+function numberToRound(value) {
+  if (!value) {
+    return 0;
+  }
+
+  return Math.round(value)
+
+}
+
+module.exports = {
+  parseTime: parseTime,
+  fomatMoney2: fomatMoney2,
+  transformNumToW: transformNumToW,
+  numberToRound: numberToRound
+}
